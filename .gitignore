@@ -1,0 +1,13 @@
+.DS_Store
+._*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+*.log
+*.aux
+*.out
+*.toc

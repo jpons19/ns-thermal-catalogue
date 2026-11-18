@@ -1,0 +1,3 @@
+source_id,name,reference,reference_url,age_yr_lo,age_yr_hi,age_basis,distance_kpc
+3,CXOU J085201.4-461753,HO26,https://doi.org/10.1093/mnras/stag126,2400,5100,Allen et al. (2015) estimate adopted by Ho et al.,
+3,CXOU J085201.4-461753,SU26,https://doi.org/10.3847/2041-8213/ae27c4,1600,3300,SNR radius and shock speeds at the revised distance,1.41

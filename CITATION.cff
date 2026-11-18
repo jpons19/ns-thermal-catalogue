@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+message: "This is a working literature catalogue. Cite the original observational papers and the specific repository commit used; see data/references.csv and the audit."
+title: "Observational catalogue for neutron-star cooling"
+type: dataset
+version: "0.1.0-review"
+abstract: "Literature measurements, source-by-source uncertainty review and reproducible luminosity-age plots."

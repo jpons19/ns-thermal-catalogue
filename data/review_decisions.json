@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-18",
+  "review_principle": "Outer envelope of accepted literature scenarios and uncertainties; no common confidence level.",
+  "sources": {
+    "21": {
+      "name": "Vela (PSR B0833−45)",
+      "status": "adopted_review_envelope",
+      "age_yr_lo": 11000,
+      "age_yr_hi": 40000,
+      "L_inf_erg_s_lo": 2e+32,
+      "L_inf_erg_s_hi": 4.4e+32,
+      "excluded_references": [
+        "V13"
+      ],
+      "marker_policy": "Retain WEB catalogue point for comparison; no new best estimate selected.",
+      "notes": "Rounded selected bounds, not exhaustive confidence limits; see audit section 3."
+    },
+    "33": {
+      "name": "PSR B2334+61",
+      "status": "provisional_age_unresolved",
+      "distance_kpc": 3.1,
+      "distance_kpc_lo": 2.1,
+      "distance_kpc_hi": 3.3,
+      "fiducial_L_inf_erg_s": 7.8e+31,
+      "marker_L_inf_erg_s_lo": 2.4e+31,
+      "marker_L_inf_erg_s_hi": 1.09e+32,
+      "L_inf_erg_s_lo": 2.4e+31,
+      "L_inf_erg_s_hi": 2.5e+32,
+      "display_age_yr_lo": 6930,
+      "display_age_yr_hi": 41100,
+      "display_marker_age_yr": 7700,
+      "marker_age_yr_hi": 8470,
+      "accepted_comparisons": [
+        "P20",
+        "M24"
+      ],
+      "notes": "Age span is a display placeholder, not an adopted physical interval at 3.1 kpc. P20 13 km fit is distance compatible, not refit to the accepted distance. Direct McGowan alternatives excluded; inherited provenance retained."
+    }
+  }
+}

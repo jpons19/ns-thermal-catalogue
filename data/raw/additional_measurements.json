@@ -1,0 +1,42 @@
+{
+  "vigano2013_cool_limits": {
+    "12": [100, 33.1], "5": [60, 32.2], "2": [90, 32.9], "13": [110, 33.3],
+    "16": [50, 31.9], "24": [60, 32.2], "21": [40, 31.5], "33": [50, 31.9],
+    "34": [40, 31.5], "35": [120, 32.9], "37": [90, 32.9],
+    "101": [120, 33.4], "102": [150, 33.8], "103": [120, 33.4],
+    "105": [150, 33.8], "106": [100, 33.1], "108": [130, 33.6],
+    "109": [180, 34.1], "110": [200, 34.3], "111": [100, 32.9],
+    "112": [300, 34.9], "113": [200, 34.3], "114": [220, 34.3],
+    "115": [250, 34.7], "116": [40, 31.5], "117": [70, 32.5]
+  },
+  "marino2024": {
+    "PSR J0205+6449": {
+      "id": 14, "distance_kpc": 2.0, "model": "BB+PL",
+      "kT_eV": [160, 200, 280], "cool_kT_limit_eV": 4, "cool_L32_limit": 0.0001,
+      "age_basis": "Historical association with SN 1181, as adopted by Marino et al.",
+      "note": "The paper adopts a 10% age uncertainty for its analysis."
+    },
+    "PSR B2334+61": {
+      "id": 33, "distance_kpc": 3.1, "model": "BB",
+      "kT_eV": [150, 160, 170], "cool_kT_limit_eV": 40, "cool_L32_limit": 0.4,
+      "age_basis": "SNR G114.3+0.3 age",
+      "note": "The paper adopts a 10% age uncertainty for its analysis."
+    },
+    "CXOU J0852-4617": {
+      "id": 3, "distance_kpc": 0.8, "model": "BB",
+      "kT_eV": [388, 397, 406], "cool_kT_limit_eV": 50, "cool_L32_limit": 1.3,
+      "age_basis": "SNR expansion age adopted by Marino et al.",
+      "note": "Paper distance range 0.5–1.0 kpc. About 0.8 kpc is inferred from the quoted flux and luminosity."
+    }
+  },
+  "vela_jr_2026": {
+    "id": 3,
+    "distance_kpc": [1.27, 1.41, 1.55],
+    "ho_age_yr": [2400, 5100],
+    "suherli_age_yr": [1600, 3300],
+    "cool_L32_range": [1.3, 4.0],
+    "cool_T_local_K_range": [660000, 880000],
+    "redshift_factor": 1.235,
+    "total_L32": [4.0, 5.0, 6.0]
+  }
+}

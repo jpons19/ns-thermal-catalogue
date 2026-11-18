@@ -1,0 +1,529 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,amssymb,enumitem}
+\usepackage{adjustbox}
+\DeclareTextSymbolDefault{\textbullet}{OMS}
+\usepackage[hidelinks]{hyperref}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\newcommand{\erg}{\mathrm{erg\,s^{-1}}}
+\newcommand{\Lbol}{L^{\infty}}
+\newcommand{\src}[1]{\textsf{[#1]}}
+
+\title{Thermally emitting isolated neutron stars: \\ open issues and interpretation notes that must accompany the compiled data}
+\author{Notes prepared to accompany \texttt{NS\_thermal\_crossmatch.xlsx} and \texttt{ns\_cooling\_data.py}}
+\date{Compiled November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+This note collects every caveat, inconsistency and interpretational choice that affects the use of the compiled observational data on young and middle-aged thermally emitting neutron stars when they are compared with theoretical cooling curves. It combines the caveats stated by Vigan\`o et al.\ (2013, V13), Potekhin et al.\ (2020, P20, and the living catalogue page, ``web'', last update 03.08.2026), Marino et al.\ (2024, M24) and Ho, Simkhayeva \& Potekhin (2026, Ho+26) with new estimates made for this work: the detectability of cool whole-surface components, the size of the luminosity range implied by competing distances, the bias of characteristic ages under field decay and non-zero birth periods, the sensitivity of a cooling curve to age errors, and the conversion between confidence levels. Where a statement is my own estimate or a reading of a figure, it is marked as such. The central conclusion is that the \emph{definition} of the thermal luminosity (hot spot versus whole surface), the \emph{distance}, and the \emph{age basis} each change the position of a source on the luminosity--age plane by more than the formal statistical error, and so should travel with the data.
+\end{abstract}
+
+\tableofcontents
+
+\section{Scope and how to use this note}
+Provenance tags used throughout: \src{V13}, \src{P20} (2020 paper), \src{web} (catalogue page, 03.08.2026), \src{M24}, \src{Ho26}, and \src{est} for estimates computed here from numbers in those references. A statement tagged \src{fig} is read by eye from a published figure and is unverified. The calculations are in Section~\ref{sec:spectral}--\ref{sec:stats} and Appendix~\ref{app:formulas}; all tables generated from numbers can be reproduced from the workbook.
+
+Two corrections to my earlier working notes are made here. First, I had suggested that M24's assumption of 10\% age errors (versus 50\% in V13) strongly changes how strongly SLy4 is excluded; the estimate in Section~\ref{sec:ageerr} shows that the physical shift of a cooling curve is only $0.015$--$0.1$ dex, much smaller than luminosity or distance uncertainties, so the age error matters mainly for how the classifier weights the age feature, not for the physical tension. Second, with the Ho+26 re-analysis the apparent one-dex disagreement between M24 and P20 for Vela Jr is largely removed (Section~\ref{sec:vela}).
+
+The catalogue exports the ages in the M24 main text (841 yr, 7700 yr and 2500--5000 yr) and the quoted luminosity errors in Supplementary Data Table~6. The adopted 10\% age errors are part of the paper's analysis. A point age in the catalogue indicates that the input provides a single value. The 3C~58 historical association is disputed. \href{https://doi.org/10.3847/2041-8213/ac2253}{Ritter et al.\ (2021)} identify Pa~30 with SN~1181, and \href{https://doi.org/10.1086/504584}{Bietenholz (2006)} finds a much longer 3C~58 radio expansion timescale. The comparison sample omits 3C~58 and the literature cross-match retains the historical age.
+
+\section{Provenance, units and confidence levels}
+\begin{table}[htbp]
+\centering\small
+\caption{What each reference provides and how its uncertainties are defined.}\label{tab:prov}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{P{2.2cm}P{3.2cm}P{4.0cm}P{5.3cm}}
+\toprule
+Reference & Content & Luminosity / temperature definition & Uncertainties and conventions \\
+\midrule
+V13 (MNRAS 434, 123) & 40 sources (4 CCO, 8 RPP, 7 XINS, 4 high-B, 17 magnetars); homogeneous re-analysis of XMM/Chandra spectra & Bolometric $L$ of the thermal component(s) only; best-fit model BB, NSA or RCS; $kT_{\rm bb}$ always listed; ``hidden'' cool component limit $L_{\rm cool}$ & $L$ is a \emph{range} including statistical and distance errors; at least $50\%$ for strongly absorbed sources; $kT$ has no error; $B_p$ is the polar field $6.4\times10^{19}\sqrt{P\dot P}$ G; ages $\log\tau_c$, $\log\tau_k$ (kinematic range) \\
+P20 (MNRAS 496, 5052) & 55 sources, excludes magnetars; ages $t_*$ independent of timing; critical review of each source & Redshifted $L^\infty$ and $kT^\infty$, often from \emph{atmosphere} models (NSA, NSMAXG, NSX); for two-component fits the cooler component is given when the hot one contributes $<15\%$ & Mostly $1\sigma$ (some reduced from 90\%), upper limits at $3\sigma$; $B_{\rm dip}=3.2\times10^{19}\sqrt{P\dot P}$ is the \emph{equatorial} field, i.e.\ half of V13's $B_p$ \\
+web (updated 03.08.2026) & 59 rows; supersedes P20 table for many sources (Vela Jr, Calvera, B0656+14, J1957, etc.) & Same as P20, tabulated as min/mid/max in units of $10^{33}$ erg/s & Ranges; see log of updates; typos corrected since 2020 but some remain (Table~\ref{tab:errors}) \\
+M24 (arXiv:2404.05371) & 3 sources in detail (PSR J0205+6449, PSR B2334+61, CXOU J0852$-$4617); 70-source sample not published & Bolometric flux of the \emph{hot-spot blackbody} component only; $L_{\rm stat}$ from Monte Carlo propagation & $90\%$ errors in tables (caption says $1\sigma$); 10\% age error assumed when none is quoted; BB temperatures without redshift correction stated \\
+Ho+26 (arXiv:2601.14388) & Vela Jr only, all XMM and Chandra spectra at $d=1.41$ kpc & Total $L$ and cool-surface $L$ separately & $1\sigma$; $M=1.4\,M_\odot$, $R=12$ km fixed \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\paragraph{Units in the data module.} Age in years, $L$ in erg\,s$^{-1}$, $T$ in eV, all as seen at infinity. V13's values are explicitly ``as measured by a distant observer''; P20 and Ho+26 give both forms and the redshifted ones are used.
+
+\section{Observables and their definitions}
+\subsection{Redshift conventions}
+The effective temperature and luminosity at the surface are related to those at infinity by $T^\infty=T_{\rm eff}/(1+z_g)$, $L^\infty=L(1-r_g/R)$, $R^\infty=R(1+z_g)$ with $1+z_g=(1-r_g/R)^{-1/2}$. Table~\ref{tab:red} \src{est} gives representative values. Because $L^\infty\propto (T^\infty)^4(R^\infty)^2$, a mass and radius that differ from the ones adopted in the spectral fit shift $T_{\rm eff}$ by 5--8\% and the bolometric $L^\infty$ little; P20 stress that $T^\infty$ and $L^\infty$ are the robust quantities because $M$ and $R$ are rarely known. Mixing redshifted and unredshifted temperatures between references (V13's $kT_{\rm bb}$ is redshifted; atmosphere $kT_{\rm eff}$ values such as those in Ho+26 Table~6 are not) would introduce a spurious $\sim20$--30\% offset.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Redshift factors for representative masses and radii. $T^\infty=T_{\rm eff}/(1+z_g)$, $L^\infty=L\,(1-r_g/R)$, $R^\infty=R(1+z_g)$. Ho+26 fix $M=1.4\,M_\odot$, $R=12$ km ($1+z_g=1.235$); V13 use $M=1.4\,M_\odot$, $R=11.6$ km.}\label{tab:red}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{cccccc}
+\toprule
+$M\,(M_\odot)$ & $R$ (km) & $r_g$ (km) & $1+z_g$ & $R^\infty$ (km) & $1-r_g/R$\\
+\midrule
+1.4 & 10 & 4.14 & 1.306 & 13.1 & 0.586\\
+1.4 & 12 & 4.14 & 1.235 & 14.8 & 0.655\\
+1.4 & 13 & 4.14 & 1.211 & 15.7 & 0.682\\
+1.6 & 12 & 4.73 & 1.284 & 15.4 & 0.606\\
+1.8 & 12 & 5.32 & 1.340 & 16.1 & 0.557\\
+1.4 & 11.6 & 4.14 & 1.247 & 14.5 & 0.644\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\subsection{Magnetic-field and age conventions}
+V13 and M24 quote the \emph{polar} field $B_p=6.4\times10^{19}\sqrt{P\dot P}$ G; P20 and the web quote the \emph{equatorial} $B_{\rm dip}=3.2\times10^{19}\sqrt{P\dot P}$ G. Across matched pulsars $\log B_p^{\rm V13}-\log(2B_{\rm dip}^{\rm P20})\approx0$ (workbook column ``dlog Bp''). Ho+26 also quote equatorial fields for CCOs. Both are vacuum-dipole characteristic fields with $I=10^{45}$ g cm$^2$, $R=10$ km and orthogonal rotator; V13 integrate spin-down with a force-free aligned rotator whose torque is $1.5$--$3$ times larger than the vacuum formula, so the same $P$ and $\dot P$ translate into a field lower by $\sim20$--40\%, and the inclination angle changes the integrated period by a factor $\sim2$ \src{V13}.
+
+\section{Spectral-model systematics}\label{sec:spectral}
+\subsection{Blackbody versus atmosphere}
+\src{V13} state that more than one model often fits equally well, with inferred effective temperatures that differ by up to a factor of 2, and that the choice of absorption model and abundances adds further systematic error. \src{P20} state that temperatures from different models may vary by a factor of a few and \emph{anticorrelate} with the radius of the equivalent emitting sphere; the model that gives the higher temperature typically gives the lower luminosity (smaller bolometric correction). V13 therefore prefer the luminosity, an integrated quantity that averages over anisotropy and model choice, with the remaining uncertainty dominated by distance (up to an order of magnitude for the worst cases) and by absorption (about 30\% in the worst cases). P20 add that a luminosity must still be corrected for the effective emitting area before it is compared with a simulation that radiates from the whole surface.
+
+\paragraph{Consequence for the data.} The temperature column in the data module is therefore \emph{not} a physical surface temperature common to all references: it is a blackbody colour temperature (V13, M24, parts of P20) or an atmosphere effective temperature (P20, web, Ho+26). Only $L^\infty$ should be used quantitatively; $T^\infty$ should be plotted with its model label. The Vela Jr case (Section~\ref{sec:vela}) shows the same Chandra/XMM data yielding $kT$ from 57 to 404 eV depending on the model.
+
+\subsection{Hot spot versus whole surface: a model-independent detectability estimate}
+Most of the cold sources are fitted with hot-spot components of radius $0.2$--$1$ km. A cooler component covering the rest of the surface cannot be excluded because interstellar absorption removes its photons. Table~\ref{tab:trans} \src{est} shows the transmission and Table~\ref{tab:frac} the fraction of the bolometric blackbody flux that survives in the 0.5--8 keV band; Table~\ref{tab:bb} gives the luminosity of a whole-surface blackbody.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Transmission $e^{-N_{\rm H}\sigma(E)}$ with the same approximate cross-section. Typical $N_{\rm H}$: $4.9\times10^{21}$ (J0205+6449), $2.0\times10^{21}$ frozen (B2334+61), $(4.3$--$4.7)\times10^{21}$ (Vela Jr).}\label{tab:trans}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{cccc}
+\toprule
+$E$ (keV) & $N_{\rm H}=2\times10^{21}$ & $4.7\times10^{21}$ & $7\times10^{21}$ cm$^{-2}$\\
+\midrule
+0.2 & $5.8\times10^{-16}$ & $1.5\times10^{-36}$ & $4.6\times10^{-54}$\\
+0.3 & $6.8\times10^{-6}$ & $7.1\times10^{-13}$ & $8.1\times10^{-19}$\\
+0.5 & $4.7\times10^{-2}$ & $7.8\times10^{-4}$ & $2.3\times10^{-5}$\\
+1.0 & $6.2\times10^{-1}$ & $3.2\times10^{-1}$ & $1.9\times10^{-1}$\\
+2.0 & $9.3\times10^{-1}$ & $8.4\times10^{-1}$ & $7.7\times10^{-1}$\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Fraction of the \emph{bolometric} blackbody flux that is detected in the 0.5--8 keV band after interstellar absorption (approximate cross-section $\sigma=2.4\times10^{-22}E_{\rm keV}^{-8/3}$ cm$^2$, no absorption edges; accurate to a few tens of per cent in this range). For $kT\lesssim 60$ eV the detected fraction is $\lesssim 10^{-3}$: the luminosity of a cool whole-surface component is essentially unconstrained by the X-ray data.}\label{tab:frac}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{cccc}
+\toprule
+$kT^\infty$ (eV) & $N_{\rm H}=2\times10^{21}$ & $4.7\times10^{21}$ & $7\times10^{21}$ cm$^{-2}$\\
+\midrule
+30 & $4.1\times10^{-6}$ & $2.0\times10^{-7}$ & $2.2\times10^{-8}$\\
+50 & $1.1\times10^{-3}$ & $1.1\times10^{-4}$ & $2.5\times10^{-5}$\\
+75 & 0.016 & $3.0\times10^{-3}$ & $1.0\times10^{-3}$\\
+112 & 0.086 & 0.027 & 0.013\\
+200 & 0.339 & 0.182 & 0.124\\
+400 & 0.702 & 0.547 & 0.465\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Luminosity of a blackbody covering the whole star, $L=4\pi (R^\infty)^2\sigma_{\rm SB}(T^\infty)^4$ with $R^\infty=14.8$ km ($M=1.4\,M_\odot$, $R=12$ km). Atmospheres differ at fixed $T_{\rm eff}$ in colour but not in $L$; the point is the $T^4$ scaling and the magnitude of luminosity that can hide in the extreme-UV.}\label{tab:bb}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{ccc}
+\toprule
+$kT^\infty$ (eV) & $T^\infty$ (K) & $L_{\rm BB}$ (erg\,s$^{-1}$)\\
+\midrule
+20 & $2.32\times10^{5}$ & $4.53\times10^{30}$\\
+30 & $3.48\times10^{5}$ & $2.29\times10^{31}$\\
+40 & $4.64\times10^{5}$ & $7.25\times10^{31}$\\
+50 & $5.80\times10^{5}$ & $1.77\times10^{32}$\\
+60 & $6.96\times10^{5}$ & $3.67\times10^{32}$\\
+75 & $8.70\times10^{5}$ & $8.96\times10^{32}$\\
+100 & $1.16\times10^{6}$ & $2.83\times10^{33}$\\
+112 & $1.30\times10^{6}$ & $4.45\times10^{33}$\\
+150 & $1.74\times10^{6}$ & $1.43\times10^{34}$\\
+200 & $2.32\times10^{6}$ & $4.53\times10^{34}$\\
+400 & $4.64\times10^{6}$ & $7.25\times10^{35}$\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+Three consequences follow. (i) For $kT^\infty\lesssim60$ eV and $N_{\rm H}\approx5\times10^{21}$ cm$^{-2}$ less than $10^{-3}$ of the bolometric flux is detected, so the X-ray data alone cannot bound a whole-surface component below $\sim10^{32}$ erg\,s$^{-1}$ (Table~\ref{tab:bb}): $L\propto T^4$, so a 20\% change in $T^\infty$ changes $L$ by a factor $2.1$. (ii) The ``hidden'' limits $L_{\rm cool}$ in V13 and M24 are conditional on the assumed spectral shape, the assumed radius (11 or $\sim10$ km) and the best-fit hot-spot model; V13 note that for strongly absorbed magnetars this hidden luminosity could be of the same order as the detected hot-spot flux. (iii) P20 note that an atmosphere model with $kT\sim25$ eV and $R^\infty\sim15$ km (below the formal applicability of the Rigoselli \& Mereghetti limits) would give $L^\infty\sim10^{31}$ erg\,s$^{-1}$, far above their quoted $3\sigma$ bounds of $3\times10^{28}$--$2\times10^{29}$ erg\,s$^{-1}$ for hot spots; the limits only apply to the assumed temperature range.
+
+\subsection{Absorption, abundances and the thermal-component significance}
+V13 note that $N_{\rm H}$ is correlated with the temperature in blackbody fits and that different absorption models and abundance tables change both. M24 give a concrete example for PSR J0205+6449: adding a blackbody to the power-law fit is highly significant with the Anders--Grevesse abundances (F-test chance probability $\sim10^{-7}$) but only marginal with Wilms et al.\ ($\sim10^{-3}$); the MCMC contour with Wilms gives $kT=0.17\pm0.02$ keV and $N_{\rm H}=0.51^{+0.04}_{-0.03}\times10^{22}$ versus $0.20^{+0.08}_{-0.04}$ keV and $0.49$ in the table. For PSR B2334+61 M24 freeze $N_{\rm H}=0.20\times10^{22}$ cm$^{-2}$ (C-statistic, 320 counts); V13's fit of the same observation used PHABS with Anders--Grevesse and Balucinska-Church--McCammon cross-sections. These differences are of the order of the luminosity errors themselves and are not propagated into any of the quoted errors.
+
+\subsection{Case study: Vela Jr (CXOU J0852.0$-$4617)}\label{sec:vela}
+\begin{table}[htbp]
+\centering\scriptsize
+\caption{Published spectral analyses of Vela Jr, transcribed from Ho+26 Table~2 (errors $1\sigma$ except P20 and M24 at 90\%). The same data give $kT$ between 57 and 404 eV and $R/d$ between 0.24 and 5.2 km/kpc depending on the model; the luminosity follows the model class (hot-spot BB $\sim2\times10^{32}$, whole-surface carbon atmosphere $\sim2\times10^{33}$ at 0.77 kpc, hot spot plus cool surface $\sim5\times10^{32}$). Ho+26 tabulate M24's BB radius under $R/d$; whether M24's $R_{\rm bb}=0.24$ km is already per kpc is not stated.}\label{tab:vela}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{P{2.2cm}P{2.3cm}P{2.8cm}P{1.3cm}P{2.0cm}P{2.4cm}P{2.8cm}}
+\toprule
+Reference & Data & Model & $N_{\rm H}$ ($10^{21}$) & $kT$ (eV) & $R/d$ (km/kpc) & $L$ (erg\,s$^{-1}$)\\
+\midrule
+Kargaltsev+02 & ACIS-S & BB & $3.45\pm0.15$ & $404\pm5$ & $0.28\pm0.01$ & --\\
+Becker+06 & MOS+pn 2001+03 & BB & $3.22$ & $391\pm4$ & $0.285$ & --\\
+Becker+06 & MOS+pn 2001+03 & BB+BB & $3.82$ & 343 / 569 & $0.36$ / $0.06$ & --\\
+P20 (Shternin, priv.\ comm.) & MOS+pn 2003--10 & nsx carbon & $6.8\pm0.1$ & $133\pm2$ & $5.0\pm0.4$ & $2\times10^{33}$ ($d=0.77$)\\
+Wu+21 & pn 2010 & BB+BB & $5.5$ & 317 / 482 & $0.39$ / $0.12$ & --\\
+Wu+21 & pn 2010 & H atm.+H atm. & $7.96$ & 256 / 71 & $0.95$ / whole star & --\\
+Wu+21 & pn 2010 & carbon atm. & $7.0\pm0.2$ & $145\pm3$ & $4.3$ & --\\
+Alford \& Halpern 23 & pn 2005, 2010 & carbon atm. & $4.7$--$4.9$ & $132$ & $5.2$ & --\\
+M24 & ACIS-S (CC mode) & BB (+ hidden BB $<50$ eV, 11 km) & $4.7\pm0.4$ & $397\pm9$ & $0.24\pm0.08$ & $2.0\times10^{32}$\\
+M24 & ACIS-S & NSMAXG-H, $10^{12}$ G & -- & $310\pm10$ & $0.50$ & $F=27.0\times10^{-13}$\\
+Ho+26 & all XMM + Chandra & nsx+nsx (H): hot spot + whole star & -- & $\approx300$ / $57$--$76$ (cool) & hot spot $R^\infty\sim0.3$ km at 1 kpc & $5\times10^{32}$ total; cool $1.3$--$4.0\times10^{32}$\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\paragraph{Interpretation.} \src{Ho26} fit all XMM-Newton and Chandra spectra simultaneously at the new distance $1.41\pm0.14$ kpc (Suherli et al.\ 2026) and find that (a) a single blackbody is a poor fit ($\chi^2/{\rm dof}=573/472=1.21$), (b) a single hydrogen atmosphere gives $515/472$, and hydrogen atmospheres with a small hot spot ($T_{\rm eff}\approx3.5\times10^6$ K, $\approx300$ eV) plus a cooler surface ($6.6$--$8.8\times10^5$ K, 46--61 eV at infinity) fit best ($511/471$ non-magnetic, $503/471$ magnetic with $B=3.2\times10^{10}$ G on the cool surface), (c) carbon is a worse fit than hydrogen though better than a single blackbody, (d) the unabsorbed total flux is $\approx2.2\times10^{-12}$ erg cm$^{-2}$ s$^{-1}$ so $L=(5\pm1)\times10^{32}$ erg\,s$^{-1}$ dominated by the hot spot, and the cool-surface luminosity is $(1.3$--$4.0)\times10^{32}$ erg\,s$^{-1}$. Possible absorption lines at $\approx0.6$ and $0.9$ keV imply $B\approx3\times10^{10}$ G. The P20 value $2\times10^{33}$ erg\,s$^{-1}$ (carbon, whole surface, $d=0.77$ kpc, Shternin private communication) is superseded; the web entry is derived from Ho+26 and is therefore \emph{not} independent evidence.
+
+\paragraph{M24 versus Ho+26 \src{est}.} The unabsorbed fluxes are $2.59\times10^{-12}$ (M24, hot-spot BB) and $2.2\times10^{-12}$ (Ho+26): they agree to $\sim18\%$. M24's luminosity $2.0\times10^{32}$ erg\,s$^{-1}$ implies $d\simeq0.8$ kpc (the paper quotes only 0.5--1.0 kpc); at 1.41 kpc the same flux gives $\sim6\times10^{32}$ erg\,s$^{-1}$. Ho+26 attribute the similarity of their luminosity to M24's to ACIS-S continuous-clocking contamination compensating the smaller distance; the quoted fluxes show an excess of only $\sim18\%$ (Ho+26 themselves find an ACIS-S/pn normalisation of $1.12\pm0.01$ and an ACIS-S absorbed flux $\sim17\%$ above MOS), not the factor $(1.41/0.8)^2\approx3$ needed, so M24's $L$ is lower mainly because of the distance. M24 selected the Chandra data to ``excise the SNR contribution''; Ho+26 argue the opposite for the CC-mode observation. Finally, the cool component found by Ho+26 ($kT^\infty\approx46$--$61$ eV, $L=1.3$--$4.0\times10^{32}$ erg\,s$^{-1}$) lies at or up to a factor $\sim3$ above M24's hidden-surface limit ($kT<50$ eV, $L<1.3\times10^{32}$ erg\,s$^{-1}$), which used only one observation.
+
+\subsection{Which luminosity should be compared with cooling theory?}\label{sec:whichL}
+Cooling theory predicts the photon luminosity of the \emph{whole} surface. A hot spot can have two origins: anisotropic heat flow in a magnetised crust (a cooling-powered piece of $L$), or heating by return currents from the magnetosphere (not cooling; P20 discuss Timokhin \& Arons 2013; Salmi et al.\ 2020). In the first case the hot-spot luminosity is a \emph{lower} bound on the cooling luminosity (a cooler remainder adds to it); in the second it is an \emph{upper} bound on the cooling luminosity of the hot part but still leaves the cool remainder undetermined. P20 explicitly treat hot-spot luminosities as upper bounds, and Ho+26 compare the cool-surface luminosity with cooling curves and not the total. A defensible comparison therefore needs a bracket:
+\begin{table}[htbp]
+\centering\small
+\caption{Luminosity brackets ($10^{32}$ erg\,s$^{-1}$) for the three M24 cold sources. ``Upper limit'' follows M24's definition $L_{\rm obs}+\Delta L_{\rm obs}+L_{\rm cool}$ (their Ext.\ Data Fig.~3). Whole-surface values are atmosphere fits from P20/web/Ho+26.}\label{tab:bracket}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{P{3.0cm}P{2.6cm}P{2.2cm}P{4.0cm}P{3.0cm}}
+\toprule
+Source & M24 hot spot $L_{\rm obs}$ & M24 upper limit & Whole-surface / alternative & V13 range \\
+\midrule
+PSR J0205+6449 & 1.44 (0.94--2.04) & 2.04 & 1.9 (0.8--3.4) NSMAXG+PL, P20 & not in V13 \\
+PSR B2334+61 & 0.78 (0.68--1.08) & 1.48 & 0.47 (0.12--0.82), NSA, P20/web ($d=1.1$ kpc) & 0.05--1.3 \\
+CXOU J0852$-$4617 & 2.0 (1.4--2.6) & 3.9 & cool 1.3--4.0, total $5\pm1$ (Ho+26) & not in V13 \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\paragraph{Hot-spot size and spin-down power \src{est}.} If the hot spot is much smaller than the dipolar polar cap it is hard to attribute it to return-current heating; if it is comparable, heating is plausible and the hot-spot $L$ is not a cooling luminosity. Table~\ref{tab:pc} compares the sizes. For PSR J0205+6449 the spot ($R_{\rm bb}=0.6$ km, $R_{\rm em}=0.66$ km) is consistent with the polar cap ($0.74$ km) and $\dot E=2.7\times10^{37}$ erg\,s$^{-1}$ is large, so heating cannot be excluded; for PSR B2334+61 the atmosphere-derived spot ($3.2$ km) is larger than the cap ($0.27$ km) but $L/\dot E\approx1.3\times10^{-3}$ is a ratio at which return-current heating of order $10^{-3}$--$10^{-2}\dot E$ (a typical model range, not taken from the references) could supply the whole luminosity. Neither source shows thermal pulsations that would pin the geometry.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Hot-spot size vs the dipolar polar cap, $R_{\rm pc}=R\sqrt{2\pi R/(cP)}$ with $R=12$ km. $R_{\rm bb}$ and $N_{\rm nsmaxg}=(R_{\rm em}/R)^2$ are from M24 (Ext.\ Data Tables 2, 4); $\dot E$ from M24 Table~1.}\label{tab:pc}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lccccccc}
+\toprule
+Pulsar & $P$ (s) & $\dot E$ (erg/s) & $L_{\rm BB}$ (erg/s) & $L/\dot E$ & $R_{\rm pc}$ (km) & $R_{\rm bb}$ (km) & $R_{\rm em}$ NSMAXG-H (km)\\
+\midrule
+PSR J0205+6449 & 0.0657 & $2.7\times10^{37}$ & $1.4\times10^{32}$ & $5.4\times10^{-6}$ & 0.74 & 0.6 & 0.66\\
+PSR B2334+61 & 0.495 & $6.1\times10^{34}$ & $7.8\times10^{31}$ & $1.3\times10^{-3}$ & 0.27 & 0.9 & 3.2\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\section{Distances}\label{sec:dist}
+Luminosity scales as $d^2$, so every distance range converts into a luminosity range that the quoted statistical errors do not contain. Table~\ref{tab:dist} \src{est} ranks the largest cases among the P20/web ranges, and Table~\ref{tab:comp} lists the competing determinations for the three M24 sources.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Luminosity range implied by the distance range alone (P20 / web ranges), ten largest cases; $L\propto d^2$. Ranges are those transcribed in the cross-match workbook (some bounds for `$\sim$' entries are mine).}\label{tab:dist}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lcccc}
+\toprule
+Source & $d_{\min}$ (kpc) & $d_{\max}$ (kpc) & $\Delta\log L=2\log(d_{\max}/d_{\min})$ & $L_{\max}/L_{\min}$\\
+\midrule
+PSR J2021+3651 & 0.4 & 3.5 & 1.88 & 77\\
+PSR J1957+5033 & 0.1 & 0.8 & 1.81 & 64\\
+PSR J0726-2612 & 0.3 & 2.4 & 1.81 & 64\\
+RX J1605.3+3249 & 0.09 & 0.4 & 1.30 & 20\\
+1RXS J141256.0+792204 & 1 & 4 & 1.20 & 16\\
+PSR J1836+5925 & 0.2 & 0.7 & 1.09 & 12\\
+1E 1207.4-5209 & 1.3 & 3.9 & 0.95 & 9\\
+PSR J0633+1746 & 0.17 & 0.48 & 0.90 & 8\\
+PSR J0633+0632 & 0.8 & 2 & 0.80 & 6\\
+PSR B1055-52 & 0.2 & 0.5 & 0.80 & 6\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Competing distance determinations for the three cold sources of M24 and the implied luminosity spread.}\label{tab:comp}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{llccc}
+\toprule
+Source & Competing distance estimates (kpc) & Range used & $\Delta\log L$ & Factor\\
+\midrule
+PSR B2334+61 & 0.7 (web HI 2020) / 1.1 (web 2026) / 2.08 (YMW17) / 3.1 (NE2001) & 0.7--3.3 & 1.35 & 22\\
+CXOU J0852 & 0.5-1.0 (Allen+15) vs 1.27-1.55 (Suherli+26) & 0.5--1.55 & 0.98 & 10\\
+PSR J0205 & 2.0$\pm$0.3 (Kothes) vs 3.2 (Roberts+93) & 1.7--3.2 & 0.55 & 4\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\paragraph{PSR B2334+61.} V13 and M24 adopt $3.1^{+0.2}_{-1.0}$ kpc from the dispersion measure (NE2001). P20 note that NE2001 contains a void toward G114.3+0.3 that was introduced to accommodate an earlier larger SNR distance; YMW17 gives 2.08 kpc and HI absorption toward the SNR gives $\sim0.7$ kpc (Yar-Uyaniker et al.\ 2004); the web (2026) lists $1.1$ (0.5--1.7) kpc, the distance of the NSA fit of McGowan et al. M24 state that a smaller distance makes the pulsar colder, which is correct for the luminosity; but the same smaller distance moves the object \emph{towards} lower $L$ only if the spectral fit is unchanged, whereas atmosphere fits at $d=0.7$--$1.1$ kpc give $L\approx(0.2$--$0.8)\times10^{32}$ erg\,s$^{-1}$. Taken at face value the luminosity range from distance alone is a factor $\sim22$.
+
+\paragraph{PSR J0205+6449.} Distance $2.0\pm0.3$ kpc from the kinematic method of Kothes (2013) confirmed by W3 parallax; the older $3.2$ kpc (Roberts et al.\ 1993) would raise $L$ by a factor $\sim2.6$. M24 argue the result holds with $3.2$ kpc.
+
+\paragraph{CXOU J0852$-$4617.} See Section~\ref{sec:vela}: $d=0.5$--$1.0$ kpc (Allen et al.\ 2015; adopted by M24) versus $1.41\pm0.14$ kpc (Suherli et al.\ 2026). Ho+26 adopt the Allen et al. age of 2.4--5.1 kyr (2.5--5.0 kyr in M24). Suherli et al. infer 1.6--3.3 kyr from the shock speeds and the remnant radius at the revised distance. The comparison table pairs this newer age range with the Ho+26 cool-surface luminosity and retains both age determinations.
+
+\section{Ages}\label{sec:ages}
+\subsection{Characteristic age and what it measures}
+$\tau_c=P/(2\dot P)$ is an upper limit to the true age only if the initial period is much shorter than $P$, the braking index is $n=3$ and $B$ is constant. Both V13 and P20 treat it as a loose upper limit: P20 say the true ages can be a factor 2--3 \emph{longer} (Vela, J1119$-$6127), while for most others $t_*<\tau_c$, sometimes by orders of magnitude (RX J0822.0$-$4300, 1E 1207.4$-$5209, CXOU J185238.6+004020). V13 add that the reverse mismatch $\tau_k>\tau_c$ is seen for most extreme magnetars, implying a larger torque in the past.
+
+For general $n$ and initial period, $t=\frac{2\tau_c}{n-1}\left[1-(P_0/P)^{n-1}\right]$, which gives $P_0/P=\sqrt{1-t/\tau_c}$ for $n=3$.
+
+\subsection{Birth periods and braking indices implied by independent ages}
+Table~\ref{tab:birth} \src{est} applies the formula to the pulsars with an independent age. PSR J0205+6449 requires $P_0\approx60$ ms (92\% of the present period), PSR J0538+2817 $P_0\approx0.14$ s (95--98\% of $P$; its $\tau_c$ is overestimated by a factor $\sim15$), and PSR B1951+32 $P_0\approx19$--$30$ ms. Vela and PSR J1119$-$6127 have $t_*>\tau_c$ and need $n\approx2.0$--$2.3$ and $1.5$--$1.8$ respectively, consistent with the measured long-term braking indices of 1.7 (Vela, Espinoza et al.\ 2017) and with $n=2.68$ for J1119 once P20's argument about averaging over glitches is applied. The implied birth periods (several tens to hundreds of ms) are not exotic but show that the characteristic ages of young pulsars should not be used as upper limits without this check.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Birth periods and braking indices implied by independent ages. For $n=3$: $t=\tau_c[1-(P_0/P)^2]$; if $t_*>\tau_c$, a braking index below 3 is required, $n=1+2\tau_c/t_*$ for $P_0\ll P$. $\tau_c$ from the P20 table; $t_*$ from P20/web.}\label{tab:birth}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lccccccc}
+\toprule
+Pulsar & $P$ (s) & $\tau_c$ (kyr) & $t_*$ (kyr) & $\tau_c/t_*$ & implied $P_0$ (s), $n=3$ & $P_0/P$ & $n$ needed if $P_0\ll P$\\
+\midrule
+PSR J0205+6449 & 0.0657 & 5.37 & 0.819 & 6.6 & 0.0605 & 0.92 & --\\
+PSR B2334+61 & 0.495 & 40.6 & 7.7 & 5.3 & 0.446 & 0.90 & --\\
+PSR J0538+2817 & 0.143 & 620 & 20--60 & 15.5 & 0.136--0.141 & 0.97 & --\\
+PSR B1951+32 & 0.0395 & 107 & 46--82 & 1.7 & 0.0191--0.0298 & 0.62 & --\\
+PSR B1727--47 & 0.83 & 80.5 & 40--60 & 1.6 & 0.419--0.589 & 0.61 & --\\
+PSR J0007+7303 & 0.316 & 13.9 & 9.2 & 1.5 & 0.184 & 0.58 & --\\
+Vela (B0833--45) & 0.0893 & 11.3 & 17--23 & 0.57 & not possible with $n=3$ & -- & 1.98--2.33\\
+PSR J1119--6127 & 0.408 & 1.61 & 4.2--7.1 & 0.28 & not possible with $n=3$ & -- & 1.45--1.77\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\subsection{Field decay and the characteristic ages of older stars}\label{sec:decay}
+V13 stress that for middle-aged and old objects $\tau_c$ is usually larger than the real age and may be wrong by orders of magnitude, for example SGR 0418+5729 ($\log\tau_c=7.6$), and that the dipolar field decays under the combined action of the Hall effect and the large resistivity of the inner crust (their Fig.~10 shows the vertical drop of $\dot P$ in the $P$--$\dot P$ tracks at $10^5$ yr for $B_0\gtrsim10^{14}$ G and several Myr for weaker fields). A quantitative estimate \src{est}: with $P\dot P=KB^2$ and $B=B_0e^{-t/\tau_d}$, the period evolves as $P^2=P_0^2+KB_0^2\tau_d(1-e^{-2t/\tau_d})$ and, for $P_0\ll P$,
+\begin{equation}\label{eq:decay}
+\tau_c=\frac{P}{2\dot P}=\frac{\tau_d}{2}\left(e^{2t/\tau_d}-1\right)\qquad\Rightarrow\qquad \frac{\tau_c}{t}=\frac{e^{2x}-1}{2x},\quad x=t/\tau_d .
+\end{equation}
+The bias grows exponentially (Table~\ref{tab:gen}): $\tau_c$ is already a factor $3.2$ too large at $t=\tau_d$ and a factor $67$ too large at $t=3\tau_d$. Inverting Eq.~\eqref{eq:decay} for the X-ray isolated neutron stars with independent ages gives decay times $\tau_d\approx0.2$--$3$ Myr (Table~\ref{tab:dec}), consistent with ohmic/Hall time scales for $B\sim10^{13}$--$10^{14}$ G, i.e.\ the ratio $\tau_c/t_*=2$--9 found for XINSs is naturally explained without an unusual birth period. SGR 0418+5729 with $\tau_c=40$ Myr would require $x\gtrsim2.5$ (true age of order $\sim10^5$--$10^6$ yr), compatible with V13's statement.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Bias of the characteristic age for exponential field decay $B\propto e^{-t/\tau_d}$ with $P_0\ll P$ (Equation~\ref{eq:decay}).}\label{tab:gen}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{cc}
+\toprule
+$x=t/\tau_d$ & $\tau_c/t=(e^{2x}-1)/(2x)$\\
+\midrule
+0.1 & 1.11\\
+0.25 & 1.30\\
+0.5 & 1.72\\
+1 & 3.19\\
+1.5 & 6.36\\
+2 & 13.40\\
+3 & 67.07\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Decay time $\tau_d$ required to reconcile $\tau_c$ and $t_*$ if field decay were the only effect (equation~\ref{eq:decay}); $P_0$ is irrelevant for $P\sim10$ s. The V13 row uses its kinematic age $\log\tau_k=5.9$--$6.1$; P20 gives $550\pm250$ kyr for the same source.}\label{tab:dec}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lccccc}
+\toprule
+X-ray isolated neutron star & $\tau_c$ (kyr) & $t_*$ (kyr) & $\tau_c/t_*$ & $x=t/\tau_d$ & $\tau_d$ (kyr)\\
+\midrule
+RX J0720.4--3125 & 1900 & 850 & 2.24 & 0.72 & 1181\\
+RX J1308.6+2127 (P20) & 1460 & 550 & 2.65 & 0.86 & 642\\
+RX J1308.6+2127 (V13) & 1460 & 1030 & 1.42 & 0.33 & 3114\\
+RX J1856.5--3754 & 3760 & 420 & 8.95 & 1.73 & 242\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+For the magnetars (Table~\ref{tab:mag}) the ratio $\tau_c/\tau_k$ spans $0.18$--$18$: values $>1$ (1E 2259+586, 1E 1841$-$045) can be mimicked by field decay ($x\approx1.6$--$2.2$), but values $<1$ (five of the eight) require an \emph{increase} of the torque (V13 propose wind braking or magnetospheric effects), and V13 note that $\dot P$ itself varies by up to a factor 10 between epochs for several of these sources so $B_p$ is unreliable. This is the reason V13 flag the extreme magnetars as likely subject to extra torque and luminosity.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Characteristic vs kinematic ages for the magnetars of V13 with an SNR/proper-motion age ($\tau_k$ is the midpoint of the quoted log range). The ratio scatters over two orders of magnitude and in both directions.}\label{tab:mag}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lcccc}
+\toprule
+Magnetar (V13 values) & $\tau_c$ (kyr) & $\tau_k$ (kyr) & $\tau_c/\tau_k$ & $x$ (decay only)\\
+\midrule
+1E 2259+586 & 251.19 & 14.13 & 17.78 & 2.18\\
+1E 1841$-$045 & 5.01 & 0.71 & 7.08 & 1.57\\
+SGR 0501+4516 & 15.85 & 10.00 & 1.58 & 0.43\\
+SGR 0526$-$66 & 3.16 & 5.01 & 0.63 & $\tau_k>\tau_c$\\
+SGR 1627$-$41 & 2.00 & 5.01 & 0.40 & $\tau_k>\tau_c$\\
+CXOU J1714$-$381 & 1.00 & 5.01 & 0.20 & $\tau_k>\tau_c$\\
+SGR 1900+14 & 1.00 & 5.62 & 0.18 & $\tau_k>\tau_c$\\
+SGR 1806$-$20 & 0.40 & 0.79 & 0.50 & $\tau_k>\tau_c$\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\subsection{Other age bases}
+\paragraph{SNR ages.} For CCOs and several pulsars the ages come from SNR expansion, hydrodynamic or radiative modelling, or association with a historical supernova: PSR J0205+6449 (assuming association with SN 1181; 839--845 yr, adopted as 819 yr in P20 because the age ``gives the time of the spectral measurements''), Cas A (1680, 320--338 yr over 2000--2018). Some are explicitly uncertain: Roger et al.\ give $7$ kyr for 1E 1207.4$-$5209 with an uncertainty up to a factor 3 (P20); the radiative SNR age of HESS J1731$-$347 was revised from 27 kyr to $2$--$6$ kyr when the distance was corrected to 3.2 kpc, which changes the interpretation of that source from ``requires exotic superfluidity'' to ``compatible''; for PSR B2334+61 the SNR age $7.7$ kyr is quoted \emph{without} an uncertainty (M24 and V13 assign 10\% and $\sim50\%$ respectively); the age of CXOU J160103.1$-$513353 is an upper limit because of SNR deceleration.
+\paragraph{Proper-motion ages.} Used for several XINSs and PSR J0538+2817: they depend on the identification of a birth place; for RX J1605.3+3249 two birth places (Sco OB2 at 120--140 pc versus Octans at 140 pc but with $d=300$--$400$ kpc and an implied $\sim550$ km s$^{-1}$ space velocity) are discussed; for RX J1308.6+2127 P20 retain only the one of three Motch et al.\ ages compatible with the adopted distance and quote $550\pm250$ kyr versus V13's $800$--$1260$ kyr.
+\paragraph{Magnetic-field and braking effects for young stars.} P20 and M24 restrict to $B\lesssim10^{14}$ G with no toroidal field to avoid Joule heating; V13 find that heating dominates the luminosity only above $B\sim10^{14}$ G, so for the cold sources with $B_{\rm dip}\lesssim10^{13}$ G the field-decay heating is not expected to be important; the polar field of PSR B2334+61 reaches $2\times10^{13}$ G (M24 give $B_p=19.7\times10^{12}$ G), near the range where the effect begins and where the comparison with the $10^{13}$ G simulations should be checked.
+
+\subsection{Sensitivity of a cooling curve to age errors}\label{sec:ageerr}
+In the isothermal neutrino-cooling era $C_V\,dT/dt=-L_\nu$ with $C_V\propto T$ and $L_\nu\propto T^8$ (modified Urca) or $T^6$ (direct Urca) gives $T\propto t^{-1/6}$ and $t^{-1/4}$. With the envelope relation $T_s\propto T_b^{0.5+\alpha}$, $\alpha\ll1$ (V13/P20, Page et al.\ 2004), and $L\propto T_s^4$, one obtains $L\propto t^{-0.37}$ and $t^{-0.55}$ \src{est}, valid after the crust has relaxed (age $\gtrsim100$ yr) and before superfluidity changes the slopes. The simulated curves of M24 appear somewhat steeper between $1$ and $10$ kyr (\src{fig}, my reading, $\sim-0.5$ to $-0.7$), so Table~\ref{tab:agesens} should be read as a lower bound up to a factor $\sim2$. Even for a factor 2 age error the curve moves by $\lesssim0.2$ dex, less than the luminosity (Table~\ref{tab:conf}) or distance (Tables~\ref{tab:dist}, \ref{tab:comp}) uncertainties of the cold sources. Age is therefore important mainly (a) where the source sits near a sharp feature (the superfluid transition at $10^2$--$10^3$ yr, the end of the neutrino era near $10^5$ yr), (b) when the classifier of M24 uses it as an additional feature, and (c) for $\tau_c$-based ages, which can be wrong by orders of magnitude (Section~\ref{sec:decay}).
+
+\begin{table}[htbp]
+\centering\small
+\caption{Shift of a model curve in luminosity produced by an age error, from the analytic slopes derived in Section~\ref{sec:ages}. Compare with the luminosity errors of $0.15$--$0.5$ dex in Table~\ref{tab:conf} and distance spreads in Tables~\ref{tab:dist}--\ref{tab:comp}.}\label{tab:agesens}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{ccc}
+\toprule
+Fractional age error & $\delta\log L$ (modified Urca, $L\propto t^{-0.37}$) & $\delta\log L$ (direct Urca, $L\propto t^{-0.55}$)\\
+\midrule
+10\% & 0.015 & 0.023\\
+30\% & 0.042 & 0.063\\
+50\% & 0.065 & 0.097\\
+100\% & 0.111 & 0.166\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+\section{Statistical conventions}\label{sec:stats}
+The five sources mix confidence levels. V13's luminosities are ranges (statistical plus distance), at least $\pm50\%$ for strongly absorbed sources, and their kinematic age error is assumed to be 50\% when unknown. P20/web errors are mostly $1\sigma$; P20 explicitly reduced several 90\% errors to $1\sigma$ ``for uniformity'' (PSR J0633+0632, PSR J2021+3651 and PSR B2334+61 among them), and quote $3\sigma$ upper limits. M24's tables are 90\% (their figure caption states $1\sigma$); their statistical analysis uses binormal distributions to represent asymmetric flux and distance errors and finds $\sim20\%$ differences in classification probabilities when averaging the error bars instead. Table~\ref{tab:conf} \src{est} converts M24's luminosities to Gaussian $1\sigma$: the J0205+6449 and B2334+61 lower errors are $0.30\times10^{32}$ and $0.06\times10^{32}$ erg\,s$^{-1}$. The M24 lower error for B2334+61 ($-0.10$) is also incompatible with the asymmetric distance range ($-1.0$ kpc) that enters $L_{\rm stat}$ ($-0.36$).
+
+\begin{table}[htbp]
+\centering\small
+\caption{M24 luminosity errors (90\% confidence) and the equivalent Gaussian $1\sigma$ values (divide by $1.645$). The other references quote $1\sigma$ (P20, Ho+26), a statistical-plus-distance range (V13), or $3\sigma$ for upper limits (P20).}\label{tab:conf}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{llcc}
+\toprule
+Source & $L_{\rm obs}$ ($10^{32}$) & M24 90\% errors & Gaussian $1\sigma$ equivalent\\
+\midrule
+PSR J0205+6449 & 1.44 & +0.60/$-$0.50 & +0.36/$-$0.30\\
+PSR B2334+61 & 0.78 & +0.30/$-$0.10 & +0.18/$-$0.06\\
+CXOU J0852 & 2.00 & +0.60/$-$0.60 & +0.36/$-$0.36\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+
+Practical rule: before comparing, put all luminosity errors on the same confidence level (the workbook keeps the quoted values untouched), and propagate distance as a separate, systematic, range.
+
+\section{Theory-side caveats that travel with the data}
+\subsection{Equation of state, direct Urca threshold and masses}
+Whether a cold source ``requires'' fast cooling depends on the model baseline. In V13's microphysics the proton fraction is high enough to activate direct Urca for $M\gtrsim1.5\,M_\odot$ and they attribute the Vela pulsar, PSR B2334+61 and PSR J1740+1000 to it (their Sections 4.1 and 5.1); P20 and Ho+26 use BSk24 with $M_{\rm DU}\approx1.6$ and $1.59\,M_\odot$ respectively; M24 use SLy4 (no direct Urca at any mass, tested up to $2\,M_\odot$), BSk24 (direct Urca above $\rho=8.25\times10^{14}$ g cm$^{-3}$, $M_{\max}=2.279\,M_\odot$) and GM1A with hyperons (direct Urca already at $1.4\,M_\odot$, $\rho=5.949\times10^{14}$ g cm$^{-3}$, $M_{\max}=1.994\,M_\odot$). The V13 ``standard'' curves are thus not M24's ``minimal'' curves, and a mass that the classifier selects exactly at the threshold ($1.6\,M_\odot$ for BSk24) is sensitive to the details of the code (it lies just above the Ho+26/P20 threshold of 1.59--1.6). The central density of M24's $1.6\,M_\odot$ BSK24 model relative to $8.25\times10^{14}$ g cm$^{-3}$ should be checked before interpreting the posterior at that mass.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Direct-Urca thresholds and baselines in the references.}\label{tab:eos}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{P{2.6cm}P{4.0cm}P{4.2cm}P{4.2cm}}
+\toprule
+Reference & EoS / composition & Direct Urca & Note \\
+\midrule
+V13 & Not named in the text; $npe\mu$ core & $M\gtrsim1.5\,M_\odot$ & Low-mass family brighter than high-mass after $\sim100$ yr \\
+P20 / Ho+26 & BSk24, no hyperons & $M>M_{\rm DU}\approx1.59$--$1.6\,M_\odot$ & Triplet gap suppressed by many-body correlations improves fit to old stars \\
+M24 SLy4 & Nucleonic & none up to $2\,M_\odot$ & ``Minimal'' baseline \\
+M24 BSK24 & Nucleonic & $\rho>8.25\times10^{14}$ g cm$^{-3}$ & $M_{\max}=2.279\,M_\odot$ \\
+M24 GM1A & Hyperons (matched to SLy4 crust) & from $1.4\,M_\odot$ ($5.949\times10^{14}$ g cm$^{-3}$) & $M_{\max}=1.994\,M_\odot$; hyperon Cooper pairs also active \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\subsection{Envelope composition}
+Light-element envelopes give luminosities about an order of magnitude higher than iron at ages $\sim10^3$--$10^5$ yr regardless of magnetic field (V13, M24, P20 Fig.~1). Using only iron is the most extreme (coldest) choice and therefore the conservative one for the claim that a source is cold; but it removes a physical explanation for warmer sources and, for older stars, the curves cross (M24 Ext.\ Data Fig.~4, where a light envelope lets even a non-fast-cooling EoS reach PSR B0656+14 at $>10^4$ yr). For CCOs V13 note that light-element envelopes can reconcile the high luminosity of Kes 79 and Puppis A but not their strong anisotropy, which may require a buried (``hidden'') magnetic field that re-emerges on $10^3$--$10^5$ yr; this hidden-field scenario physically motivates the light envelope. Ho+26's hydrogen results are for the atmosphere, not for the interior envelope used in cooling.
+
+\subsection{Superfluidity, crust and magnetic physics}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt]
+\item \src{V13,P20} Superfluidity delays or accelerates cooling: suppression of neutrino emission slows it; suppression of specific heat accelerates it; pair breaking and formation adds a neutrino channel. The gap profiles for proton singlet and neutron triplet pairing vary by orders of magnitude between calculations; V13 use the Ho et al.\ (2012) gap forms, M24 use Ho et al.\ (2015). P20 show that weakly suppressed triplet gaps improve the agreement for older stars, and that the single EoS and limited gap sets used are illustrative.
+\item \src{V13} Differences between curves at $10^2$--$10^3$ yr arise from the delayed onset of core superfluidity, and depend on the EoS stiffness.
+\item \src{V13} For strongly magnetised stars the crust impurity parameter $Q_{\rm imp}$ in the pasta layer (assumed 100 in V13) controls late-time decay: low $Q_{\rm imp}$ gives a long-lived field, high $Q_{\rm imp}$ dissipation over $10^5$ yr. Mass differences are erased when Joule heating is significant.
+\item \src{V13} Initial field geometry matters: core-extended fields give a cool surface (like unmagnetised stars); crustal fields with strong toroidal components give luminosities up to an order of magnitude higher at some ages; V13 use axisymmetric simulations. M24 use only crustal dipoles with no toroidal field, deliberately omitting heating.
+\item \src{V13,M24} Magnetic fields enter the envelope: anisotropic conduction makes the equator cooler or hotter than the pole depending on field and heating; V13 find that luminosities depend weakly on the envelope anisotropy but surface temperatures do, which is another reason to prefer luminosity. V13 also stress that quantised-crust effects only matter for envelope models.
+\item \src{P20} Simulations assume spherical symmetry ($B\lesssim10^{14}$ G, $P\gtrsim10$ ms), neglect reheating, and use $\rho_b=10^{10}$ g cm$^{-3}$ for the heat blanket.
+\item \src{P20} Reheating (rotochemical, vortex creep) can maintain thermal emission in very old stars; passive cooling is tested only against not-too-old stars with estimated ages. Millisecond pulsars and very old pulsars (e.g.\ PSR B0950+08, J2144$-$3933) are excluded.
+\item \src{M24} Only 81 simulations (3 EoS $\times$ 3 masses $\times$ 9 fields), which is a coarse grid: M24 note that classification probabilities scale with the grid and are not absolute; the EoS posterior is not constrained by the classifier (marginal EoS accuracy $\sim50\%$ at $0.2$ dex noise).
+\item \src{V13,M24} Distinct outcome for the same $L$: V13's sources at $B_p^0\sim3$--$5\times10^{14}$ G are explained by field heating while the cold sources of M24 are at $\lesssim2\times10^{13}$ G; the two papers therefore probe different parts of the same parameter space.
+\end{itemize}
+
+\subsection{Stars not described by passive cooling}
+\src{V13,P20} Magnetars are excluded from P20 and from M24's displayed sample because their persistent emission is a mixture of surface emission, resonant Compton scattering in a twisted magnetosphere and return-current heating. V13 deliberately treat the RCS flux as thermal and discard the power-law component, noting that part of the energy of the detected flux comes from the magnetosphere and that disentangling surface and magnetospheric components is an open question; four extreme magnetars (SGR 1900+14, SGR 1806$-$20, 1E 1841$-$045, 1RXS J1708) show hard tails up to $10^{36}$ erg\,s$^{-1}$. SGR 0418+5729 and Swift J1822.3$-$1606 were observed after outbursts and may not have reached quiescence. For high-B pulsars and magnetars the quoted $B_p$ from timing is unreliable (variable $\dot P$).
+
+\section{Sample selection and coverage}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt]
+\item V13 excluded young pulsars with PWN whose X-rays are non-thermal (Crab, RX J0007+7303), old pulsars with tiny hot spots ($\sim$tens of m$^2$), PSR J1846$-$0258, sources fit equally well with and without a thermal component, and several magnetars still in outburst. P20 added upper limits (Crab, J0007+7303, B1727$-$47, J2043+2740, Guitar) and a hot-spot class whose $L$ is an upper bound on the total thermal luminosity, and removed sources from Zhu et al.\ (2011) with poorly constrained luminosities. The web page removes 1E 0102.2$-$7219 (not a neutron star) and adds J0554+3107, B0950+08, J0837$-$2454, eRASSU J1317 and an upper limit for the SN 1987A remnant.
+\item \src{est} The requirement of a detectable thermal spectrum and a known age and distance is a selection effect: very cold, young neutron stars with $L\lesssim10^{31}$ erg\,s$^{-1}$ at $N_{\rm H}\sim5\times10^{21}$ cm$^{-2}$ are essentially undetectable (Table~\ref{tab:frac}), so the observed fraction of ``cold'' stars is a \emph{lower bound} on the true fraction. The converse bias (preferential detection of hot-spot-dominated sources) increases the apparent luminosity of detected sources.
+\item The 70-source Dehman et al.\ sample underlying M24's statement that three sources are ``an order of magnitude colder than the others'' is not available; with the present compilation J0205+6449 and B2334+61 lie in a band populated by several other sources (Vela Jr, Homunculus, J0007+7303 upper limit) when P20/web values are used, and the claim cannot be tested.
+\item Only sources with a timing-independent age are plotted in the data module; sources dated by $\tau_c$ alone are excluded because of Section~\ref{sec:ages}.
+\end{itemize}
+
+\section{Known errors and inconsistencies in the source tables}
+\begin{longtable}{P{0.9cm}P{2.0cm}P{6.2cm}P{4.4cm}}
+\caption{Errors and inconsistencies found by cross-checking $P$, $\dot P$, $B$, $\tau_c$ and fluxes.}\label{tab:errors}\\
+\toprule
+\# & Source & Issue & Status / action \\
+\midrule
+\endfirsthead
+\toprule \# & Source & Issue & Status / action \\ \midrule
+\endhead
+1 & V13 & PSR J1740+1000: $\log\dot P=-11.7$ is $\sim2$ dex too high (web: $\dot P=2.15\times10^{-14}$, with $B$ and $\tau_c$ consistent). $\log B_p$ (13.6), $\dot E$, $\log\tau_c$ (3.1) inherit the error; true values $\approx12.6$, $35.4$, $5.1$ & Correct; J1740 is not high-B. Affects V13 Fig.~10 position \\
+2 & web (and P20) & PSR J0007+7303: $B_{\rm dip}=1.1\times10^{12}$ G is inconsistent with $\dot P=3.6\times10^{-13}$ and $\tau_c=13.9$ kyr by $\sim2$ dex (implies $\approx1.1\times10^{13}$ G) & Persists on the web; use $11\times10^{12}$ G \\
+3 & web & Geminga: $\dot P=1.10\times10^{-15}$ is a factor 10 below the value implied by its own $B_{\rm dip}$ and $\tau_c$ (and by V13) & Use $1.1\times10^{-14}$ \\
+4 & P20 paper & RX J2143.0+0654: $B_{\rm dip}=200\times10^{12}$ G inconsistent with $P$, $\tau_c$ by 2 dex (should be $\approx20$) & Fixed on the web (14.09.2020) \\
+5 & P20 paper & PSR J1154$-$6250: $L=0.017\pm0.05$ ($\times10^{32}$); recomputing from the quoted flux gives $\pm0.005$ & Fixed on the web \\
+6 & P20 vs web, V13 & RX J0720.4$-$3125 period: P20 table 16.78 s (doubled) but $B$ and $\tau_c$ correspond to 8.39 s; V13 8.39 s; web 8.391 s (Bogdanov \& Ho 2024) & Use 8.391 s and recompute $B$, $\tau_c$ \\
+7 & M24 & PSR J0205+6449: $\tau_c=58.8$ kyr (Table 1) / 54 kyr (Methods), but $P/(2\dot P)=5.4$ kyr (web 5.37 kyr). $P$, $\dot P$, $\dot E$, $B_p$ in the same table are correct & Re-check the ``upper limit'' argument \\
+8 & M24 & PSR B2334+61: $L_{\rm obs}$ lower error $-0.10$ inconsistent with $d$ range ($-1.0$ kpc) and with $L_{\rm stat}$ ($-0.36$); distance errors listed as $+0.2/-1.0$ in Table~1 and $2.1$--$3.3$ kpc in the text & Treat errors as underestimated \\
+9 & M24 & SLy4 posterior $<5\%$ claim fails for J0205+6449 in 4D (5.4\%); ``slight GM1A preference'' for B2334+61 holds only in 3D (4D: BSK24 0.53, GM1A 0.43; mass 1.8 favoured, 0.64); atmosphere fluxes are lower only for J0205 (for B2334 and CXOU the H-atmosphere flux is higher by 15\% and 4\%, within errors) & Quote 4D values consistently \\
+10 & M24 & Housekeeping: Supplementary Tables 6--7 cited as 1--2; ages 839/841/0.80 kyr for J0205; $N_{\rm H}=0.49$ (table) vs $0.51$ (MCMC); Methods swaps source names; errors 90\% vs ``1$\sigma$'' in figure caption & Note when citing \\
+11 & P20 paper & PSR B2334+61: $L=0.47$ ($\times10^{32}$) comes from the $d=1.1$ kpc NSA fit, but Table~1 lists $d\sim0.7$ kpc & Resolved on the web ($d=1.1$) \\
+12 & web & RX J1605.3+3249 distance row reads $0.035/0.5/0.40$ kpc (min$\ll$max, mid above max) & Use P20 0.09--0.4 until confirmed \\
+13 & M24 \src{fig} & Fig.~1: PSR B0656+14 appears near $2$--$3\times10^{31}$ erg\,s$^{-1}$; V13, P20 and the web give $3.5$--$7\times10^{32}$ erg\,s$^{-1}$ (web changed to $3.5\times10^{32}$ in 2021, Zharikov et al.) & Unresolved; check when the table is published \\
+\bottomrule
+\end{longtable}
+
+\section{Source-by-source notes}
+\begin{longtable}{P{2.3cm}P{2.9cm}P{2.9cm}P{3.0cm}P{3.2cm}}
+\caption{Per-source basis of the age, distance and luminosity, with the main open issues.}\label{tab:sources}\\
+\toprule
+Source & Age & Distance & Thermal $L$ (erg\,s$^{-1}$) & Open issues \\
+\midrule
+\endfirsthead
+\toprule Source & Age & Distance & Thermal $L$ & Open issues \\ \midrule
+\endhead
+PSR J0205+6449 (3C 58) & 0.82--0.84 kyr (disputed SN 1181 association; M24 cite expansion arguments for an older age; $\tau_c=5.4$ kyr) & $2.0\pm0.3$ kpc (Kothes 2013); alt.\ 3.2 & M24 $1.4\,(0.9$--$2.0)\times10^{32}$ hot-spot BB; P20 $1.9\,(0.8$--$3.4)\times10^{32}$ whole surface NSMAXG+PL & BB vs atmosphere; thermal significance depends on abundances; hot spot $\approx$ polar cap; M24 hidden limit vs P20 whole-surface fit; $\tau_c$ typo in M24; no thermal pulsations \\
+PSR B2334+61 (G114.3+0.3) & $\sim7.7$ kyr (SNR HI/dynamics, no error); V13: $\log\tau_k\approx4.0$ & 0.7 (HI), 1.1 (web), 2.08 (YMW17), 3.1 (NE2001) & V13 0.05--1.3; M24 $0.78\,(0.68$--$1.08)$; web $0.47\,(0.12$--$0.82)\times10^{32}$ & Distance dominates ($\times22$); only 320 counts, $N_{\rm H}$ frozen; BB $R\sim1$ km vs atmosphere $\sim3$ km; $L/\dot E\sim10^{-3}$; errors in M24 \\
+CXOU J0852$-$4617 (Vela Jr) & 2.4--5.1 kyr (Allen et al.\ 2015); 1.6--3.3 kyr (Suherli et al.\ 2026) & 0.5--1.0 (Allen) vs $1.41\pm0.14$ (Suherli+26) & Ho+26 total $5\pm1$, cool $1.3$--$4.0\times10^{32}$; M24 $2.0\pm0.6\times10^{32}$ & Distance revision; spectral class; ACIS-S CC mode contamination; hidden limit of M24 exceeded by Ho+26 cool component; no pulsations ($<5\%$) \\
+PSR J0007+7303 (CTA 1) & $\approx9.2$ kyr (SNR/PWN modelling) & $1.4\pm0.3$ kpc & $<3\times10^{31}$ (power law fits equally well) & Only an upper limit; $B$ typo on the web; absent from M24; if thermal emission were detected it would be the coldest young source \\
+Vela pulsar & 17--27 kyr ($t_*>\tau_c=11.3$ kyr; $n=1.7$ long-term, 2.81 pre-glitch) & $0.28\pm0.02$ kpc (parallax) & V13 $1.3$--$2.0$; P20/web $4.2\times10^{32}$ & Model dependence of $L$ (2BB vs NSA+PL) by a factor 2--3 \\
+PSR J0538+2817 & $40\pm20$ kyr (proper motion, SNR) vs $\tau_c=620$ kyr & 1.30--1.47 kpc (web) & V13 5--8; web $\sim7$--$14\times10^{32}$ & Needs $P_0\approx0.14$ s; BB vs NSA gives factor $\sim2$ in $L$ \\
+PSR B0656+14 & $\tau_c=111$ kyr; Monogem SNR $\sim100$ kyr & 0.28 kpc (parallax) & web $3.5$; P20 $6.7$; V13 $5$--$6\times10^{32}$ & M24 Fig.~1 value unexplained \src{fig}; 2BB+PL: cool component radius 13 km vs 20 km \\
+Cas A NS & 320--338 yr (historical) & $3.4^{+0.3}_{-0.1}$ kpc & P20 $0.6$--$0.9\times10^{34}$; V13 $2.5$--$4\times10^{33}$ & Real-time cooling of 4--5\% over 18 yr; ACIS Graded vs subarray modes disagree; carbon atmosphere vs BB differ by factor 2--3 \\
+\bottomrule
+\end{longtable}
+
+\section{Open issues and recommended use}
+\subsection{Open issues}
+\begin{enumerate}[leftmargin=1.5em,itemsep=0pt]
+\item Spectral basis of the ``thermal luminosity'': hot-spot BB (M24, parts of V13) versus whole-surface atmosphere (P20/web, Ho+26); needs a published convention for the cold-source comparison.
+\item Conditional nature of hidden-surface upper limits (V13, M24), contradicted for Vela Jr by a cool component in the joint fit (Ho+26).
+\item Distances: B2334+61 (0.7--3.3 kpc, factor $\sim22$ in $L$), Vela Jr (0.5--1.0 vs 1.41 kpc) and the large ranges in Table~\ref{tab:dist}.
+\item Whether hot spots are cooling-powered or heated by return currents (Table~\ref{tab:pc}); no pulsation or phase-resolved constraints for the cold sources.
+\item Age bases: $\tau_c$ unreliable (Section~\ref{sec:decay}); SNR ages without error (B2334+61); historical age for J0205+6449 against older kinematic arguments; the Vela Jr age relative to the revised distance.
+\item Confidence-level mixing: 90\% (M24), $1\sigma$ (P20, Ho+26), range (V13); asymmetric errors.
+\item Direct-Urca threshold sensitivity: M24's $1.6\,M_\odot$ BSK24 versus $M_{\rm DU}=1.59\,M_\odot$ in the Ho+26 code; the EoS posterior cannot be constrained with the 3-EoS grid.
+\item Envelope composition and hidden-field scenarios: only iron used in M24 (conservative), light elements for CCOs argued by V13.
+\item Superfluid gap models and crust impurity parameters: single sets used, large systematic effects (P20, V13).
+\item Selection effects: undetectable cold sources, SNR-association bias, absorption-driven detection bias; the 70-source M24 sample unavailable.
+\item Table errors in Table~\ref{tab:errors}, including those still present on the web page.
+\item Prior art: the need for fast cooling in J0205+6449, B2334+61 and J0007+7303 is already discussed by Page et al.\ (2004, 2009) and Yakovlev \& Pethick (2004) as cited by Ho+26; P20 states it from the BSk24 comparison; M24's ``strongest measurement up to now'' statement has to be read against this.
+\end{enumerate}
+
+\subsection{Checklist for comparing the data with theoretical curves}
+\begin{enumerate}[leftmargin=1.5em,itemsep=0pt]
+\item Plot $L^\infty$, not $T^\infty$; plot $T^\infty$ only with the model label and never merge temperatures from different spectral classes.
+\item Use the cool-surface or whole-surface luminosity when available (P20/web/Ho+26) and treat hot-spot-only values (M24, V13 BB) as a bracket (Table~\ref{tab:bracket}); do not interpret hot-spot luminosity as the cooling luminosity of the whole star.
+\item Add a distance systematic as a separate error band ($L\propto d^2$) and keep competing distances (Tables~\ref{tab:dist}, \ref{tab:comp}).
+\item Put errors on one confidence level; keep asymmetric errors; keep upper limits as upper limits.
+\item Use independent ages only; add $\tau_c$-dated sources as upper limits \emph{only} after the checks of Section~\ref{sec:ages}; assign a realistic age error (30--50\% unless a measured one exists).
+\item Use the web page values over the P20 paper for sources revised since 2020 and correct the known typos (Table~\ref{tab:errors}).
+\item Compare to simulations with the same redshift convention (Table~\ref{tab:red}) and state EoS, mass, envelope, field and superfluid gaps; verify the direct-Urca threshold of the specific code.
+\item Report the selection effect: the sample is biased against the coldest young stars.
+\end{enumerate}
+
+\appendix
+\section{Formulas used}\label{app:formulas}
+\begin{align}
+L^\infty &= 4\pi (R^\infty)^2\sigma_{\rm SB}(T^\infty)^4,\quad R^\infty=R/\sqrt{1-r_g/R},\quad T^\infty=T_{\rm eff}\sqrt{1-r_g/R}\\
+L &= 4\pi d^2 F_{\rm bol}\\
+f_{\rm det}(kT,N_{\rm H}) &= \frac{\int_{0.5}^{8}E^3\,(e^{E/kT}-1)^{-1}e^{-N_{\rm H}\sigma(E)}dE}{\int_0^\infty E^3\,(e^{E/kT}-1)^{-1}dE},\qquad \sigma(E)=2.4\times10^{-22}E_{\rm keV}^{-8/3}\ {\rm cm^2}\\
+R_{\rm pc} &= R\sqrt{2\pi R/(cP)}\\
+t &= \frac{2\tau_c}{n-1}\left[1-\left(\frac{P_0}{P}\right)^{n-1}\right],\qquad \frac{\tau_c}{t}\Big|_{\rm decay}=\frac{e^{2x}-1}{2x}\\
+L&\propto t^{-0.37}\ ({\rm mod.\ Urca}),\ t^{-0.55}\ ({\rm dir.\ Urca});\qquad \sigma_{1\sigma}=\sigma_{90\%}/1.645
+\end{align}
+The absorption cross-section is a rough power law; it is adequate for the order-of-magnitude statements in Section~\ref{sec:spectral} but not for fitting.
+
+\section{Reproducibility}
+The numbers in the tables are computed from the workbook \texttt{NS\_thermal\_crossmatch.xlsx} (Master sheet; Findings and VelaJr sheets give the underlying cross-checks) and the data module \texttt{ns\_cooling\_data.py}. The statements tagged \src{est} come from the short calculation script that generated the tables of this note.
+
+\section*{References and a caution on citations}
+The five main references are: Vigan\`o et al.\ 2013, MNRAS 434, 123; Potekhin et al.\ 2020, MNRAS 496, 5052 (and the catalogue page www.ioffe.ru/astro/NSG/thermal/cooldat.html); Marino et al.\ 2024, arXiv:2404.05371; Ho, Simkhayeva \& Potekhin 2026, arXiv:2601.14388. The revised Vela Jr age and distance are from \href{https://doi.org/10.3847/2041-8213/ae27c4}{Suherli et al.\ 2026, ApJL 997, L36}. Other secondary references were carried over from the original working notes and remain to be checked before publication.
+\end{document}
