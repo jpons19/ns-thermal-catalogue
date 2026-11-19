@@ -1,7 +1,5 @@
 # Reference cooling curves
 
-This observational project includes the output arrays in data/cooling_reference_curves.csv and brief model metadata only. The cooling solver, input files, run scripts and diagnostic outputs are maintained separately.
+The plotted data are in `data/cooling_five_eos.csv`: BSk22, BSk24, BSk25*, BSk26 and DDFGOS(APR)*, all at 1.4 solar masses, with the same Gudmundsson envelope and microphysics. BSk22 reaches the direct Urca threshold for this stellar mass. The asterisks mark provisional treatments: BSk25 uses provisional crust–core matching after removing six pressure-inversion rows; DDFGOS(APR) retains a Maxwell density jump and has a discrepancy in the tabulated crust composition. No additional pion-condensate emissivity is included. These are reference curves, not fits to observations. Both panels show theoretical true age; characteristic age is an observational proxy.
 
-Tracks: BSk26, 1.4 and 1.8 solar masses; Gudmundsson envelope; B=0; supplied pairing models 7/12/8; Yakovlev et al. 2001 modified Urca and Bottaro-Caputo-Fiorillo nucleon bremsstrahlung. The high-mass run changes only mass; the reference uses the supplied default central pressure. Model metadata and the input archive hash are in run_metadata.json.
-
-Largest per-window energy-closure residuals from t >= 1 year: 0.349% and 0.271%. This is an energy check, not a spatial convergence study. The supplied EOS loader omits a slightly non-monotonic pressure row. Tracks stop at their first accepted L_infinity < 1e31 erg/s, with no extrapolation. Both panels display true-age theoretical tracks; characteristic age is only an observational proxy. These are reference curves, not fits to the observations.
+The cooling solver and input files are maintained separately. Earlier BSk26 runs and their metadata are retained as historical material and are not plotted.

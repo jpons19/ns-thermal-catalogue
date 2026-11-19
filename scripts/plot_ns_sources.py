@@ -24,7 +24,7 @@ parser.add_argument('--b2334-marino-distance', action='store_true', help='Compar
 parser.add_argument('--vela-revised', action='store_true', help='Show accepted Vela age-luminosity box; carry B2334 working selection')
 parser.add_argument('--original-catalogue', action='store_true', help='Reproduce original catalogue locations without review overlays')
 parser.add_argument('--monogem-revised', action='store_true', help='Show current review ranges, with Monogem error bars (default)')
-parser.add_argument('--cooling-curves', action='store_true', help='Overlay saved reference and high-mass cooling arrays')
+parser.add_argument('--cooling-curves', action='store_true', help='Overlay the five saved 1.4-solar-mass cooling curves')
 args = parser.parse_args()
 if sum([args.b2334_extended,args.b2334_marino_distance,args.vela_revised,args.original_catalogue,args.monogem_revised]) > 1:
     parser.error('Choose at most one plotting mode')
@@ -97,6 +97,8 @@ def label(p):
         return aliases[p['id']]
     return p['name'].replace('PSR ','').replace('RX J','RX J').replace('.0-5022','−5022').replace('.4-3125','−3125').replace('.4-4123','−4123').replace('.3+3249','+3249').replace('.5-3754','−3754').replace('.0+0654','+0654')
 
+COOLING_STYLES = [('BSk22','#b23a48','-'),('BSk24','#176aa3','-'),('BSk25*','#8a5b19','--'),('BSk26','#363636','-.'),('DDFGOS(APR)*','#7653a3',':')]
+
 for ax,basis in zip(axes,('independent','characteristic')):
     ax.set(xscale='log',yscale='log',xlim=(220,5e7),ylim=(1.1e28,1.4e35))
     ax.set_xlabel('Age (yr)' if basis=='independent' else r'Characteristic age $\tau_c=P/(2\dot P)$ (yr)',labelpad=10)
@@ -106,10 +108,10 @@ for ax,basis in zip(axes,('independent','characteristic')):
     ax.set_title(('Independent age estimate' if basis=='independent' else 'Characteristic age only in the catalogue')+f'  ·  {len(group)} sources',loc='left',pad=15)
     texts=[]
     if args.cooling_curves:
-        curves=np.genfromtxt(DATA/'cooling_reference_curves.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
-        for model,style in [('reference','-'),('high_mass','--')]:
+        curves=np.genfromtxt(DATA/'cooling_five_eos.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
+        for model,color,style in COOLING_STYLES:
             c=curves[curves['model']==model]
-            ax.plot(c['time_years'],c['L_infinity_erg_s'],style,color='#292929',lw=1.8,zorder=2)
+            ax.plot(c['time_years'],c['L_infinity_erg_s'],style,color=color,lw=1.7,zorder=2)
     if args.b2334_extended and basis == 'independent':
         ax.add_patch(Rectangle(
             (B2334_AGE_LO, B2334_L_LO),
@@ -210,10 +212,9 @@ elif args.b2334_extended:
 if args.monogem_revised:
     legend.append(Patch(facecolor='#d96a78',alpha=.4,label='J0205 selected envelope'))
 if args.cooling_curves:
-    for mass,style in [(1.4,'-'),(1.8,'--')]:
-        for ax in axes:
-            ax.plot([],[],style,color='#292929',label=f'BSk26 {mass:.1f} M☉')
-    axes[1].legend(loc='upper right',framealpha=.95,fontsize=10)
+    for model,color,style in COOLING_STYLES:
+        axes[1].plot([],[],style,color=color,label=model,lw=1.7)
+    axes[1].legend(title='EOS, 1.4 M☉',loc='upper right',framealpha=.95,fontsize=9,title_fontsize=9)
 fig.legend(handles=legend,loc='lower left',bbox_to_anchor=(.065,.081 if args.monogem_revised else .087 if args.b2334_marino_distance or args.vela_revised else .10),ncol=4 if args.monogem_revised else 6 if args.b2334_marino_distance or args.vela_revised else (5 if args.b2334_extended else 4),frameon=False,columnspacing=1.7 if args.b2334_extended else 2.4)
 if args.monogem_revised:
     fig.text(.07,.060,'IC 443: adopted age 3–20 kyr and L∞ = (1.0–3.5) × 10³² erg/s, shown as error bars. Luminosity marker retained for comparison.',fontsize=9.6,color='#4d5b62')

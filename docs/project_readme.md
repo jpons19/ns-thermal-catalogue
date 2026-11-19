@@ -85,7 +85,7 @@ J0205+6449 interim decision: age **0.8–7 kyr**, retaining the disputed histori
 
 ## Cooling comparison
 
-Current plots include J0205: age 0.8–7 kyr, L∞=(0.2–3.4)×10³² erg/s. BSk26 reference tracks at 1.4 and 1.8 solar masses are included in both panels. See [run notes](models/README.md), [arrays](data/cooling_reference_curves.csv) and `python scripts/plot_ns_sources.py --cooling-curves`. The original catalogue comparison is generated with `--original-catalogue --cooling-curves`.
+Current plots include J0205: age 0.8–7 kyr, L∞=(0.2–3.4)×10³² erg/s. Five reference tracks at 1.4 solar masses (BSk22, BSk24, BSk25*, BSk26, DDFGOS(APR)*) are included in both panels. See [run notes](models/README.md), [arrays](data/cooling_five_eos.csv) and `python scripts/plot_ns_sources.py --cooling-curves`. The original catalogue comparison is generated with `--original-catalogue --cooling-curves`.
 
 Cas A is accepted at 320–339 yr and L∞=(5.6–9.3)×10³³ erg/s, with error bars only. Four primary references are recorded in the audit and BibTeX file. The GitHub package contains cooling reference arrays and model descriptions only; the cooling solver and runner stay separate.
 

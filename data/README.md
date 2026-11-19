@@ -13,3 +13,5 @@ See `docs/DATA_DICTIONARY.md` for the imported table columns and `docs/ns_therma
 `excluded_sources.json` registers user-selected removals and is enforced by plotting/export. Active `sources.csv` and `measurements.csv` omit excluded rows; their unmodified imported records remain in `archive/excluded_source_records.json` and original input snapshots.
 
 `magnetic_field_estimates.json` supplies normalized equatorial dipole estimates, convention and provenance for the fifth overview column. Missing timing fields are not replaced by assumed atmosphere-model fields. The combined inventory in sources.csv contains both HTML collections; membership is determined by class MAG.
+
+Current cooling plot data: `cooling_five_eos.csv`; the older `cooling_reference_curves.csv` is retained for provenance and is not plotted.
