@@ -45,9 +45,9 @@ def main():
   elif sid in (46,48):
    chosen=f"<p class='chosen'><b>Age range adopted · 18 November 2026</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Published luminosity ceiling retained; spectral provenance and component caveats remain.</p>"
   elif sid==3:
-   chosen="<p class='chosen'><b>Age adopted · luminosity selection pending</b><br>Adopted age 1.6–5.1 kyr; provisional Ho2026 cool-surface luminosity (1.3–4.0) × 10³² erg/s. Older wind age remains a caveat; no final two-dimensional envelope adopted.</p>"
+   chosen="<p class='chosen'><b>Age and cool-surface luminosity adopted</b><br>Age 1.6–5.1 kyr; Ho2026 cool-surface luminosity (1.3–4.0) × 10³² erg/s. Error bars only; Ho range spans model medians, not a common confidence interval. Older wind age and spectral assumptions remain caveats.</p>"
   elif sid==13:
-   chosen="<p class='chosen'><b>Accepted reference · 18 November 2026</b><br>Age: <b>320–339 yr</b>; L∞: <b>(5.6–9.3) × 10³³ erg/s</b>. Point with error bars only; no shaded box.</p>"
+   chosen="<p class='chosen'><b>Accepted reference · 18 November 2026</b><br>Age: <b>307–345 yr (reference epoch 2007)</b>; L∞: <b>(5.6–9.3) × 10³³ erg/s</b>. Point with error bars only; no shaded box.</p>"
   elif sid==14:
    chosen=f"<p class='chosen'><b>Selected review envelope · {r['review_date']}</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Luminosity: <b>(0.2–3.4) × 10³² erg/s</b>. SN 1181 association disputed; spectral interpretation remains model dependent. Correct characteristic age approximately 5.4 kyr.</p>"
   elif sid==20:

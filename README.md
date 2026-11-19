@@ -72,24 +72,24 @@ The last command reproduces the **superseded initial B2334 envelope** for histor
 1. Read the relevant source section in the audit and verify its primary references.
 2. Record the accepted alternatives, excluded values and reasons in `docs/ns_thermal_literature_audit.md`.
 3. Update the corresponding entry in `data/review_decisions.json`. Preserve original literature measurements in `measurements.csv`.
-4. For a newly reviewed source, extend the generic display/export and plotting selection logic: this release currently applies review overlays to source IDs 20, 21 and 33 only.
+4. For a newly reviewed source, update the export, plotting and HTML synchronization logic as needed.
 5. Run the rebuild and validation commands; inspect the figure and HTML before committing.
 
-The HTML synchronizer currently refreshes the Monogem, Vela and B2334 sections; other source panels remain the original catalogue transcription. The historical measurement tables are preserved. The exported display CSV must not be interpreted as 41 equally reliable independent cooling detections.
+The HTML synchronizer refreshes the reviewed discussions listed in its source mapping; imported measurement tables remain unchanged. The historical measurement tables are preserved. The exported display CSV must not be interpreted as 41 equally reliable independent cooling detections.
 
 ## Citation and reuse
 
 Cite the original observational papers, the audit's stated assumptions and the repository commit used for an analysis. `CITATION.cff` identifies this working dataset. Licensing has not been assigned on the user's behalf; see `LICENSE_NOTES.md`. Original imported material retains its own provenance and applicable terms.
 
-J0205+6449 interim decision: age **0.8–7 kyr**, retaining the disputed historical-SN scenario for later discussion; luminosity pending. Saved images predate this interim age decision until the next rebuild.
+J0205+6449: provisional age **0.8–7 kyr** and adopted luminosity envelope **(0.2–3.4) × 10³² erg/s**. The young branch does not assume an association with SN 1181; Pa 30 is its likely remnant.
 
 ## Cooling comparison
 
 Current plots include J0205: age 0.8–7 kyr, L∞=(0.2–3.4)×10³² erg/s. Five reference tracks extended to L∞ < 10³⁰ erg/s at 1.4 solar masses (BSk22, BSk24, BSk25*, BSk26, DDFGOS(APR)*) are included in both panels. See [run notes](models/README.md), [arrays](data/cooling_five_eos.csv) and `python scripts/plot_ns_sources.py --cooling-curves`. The original catalogue comparison is generated with `--original-catalogue --cooling-curves`.
 
-Cas A is accepted at 320–339 yr and L∞=(5.6–9.3)×10³³ erg/s, with error bars only. Four primary references are recorded in the audit and BibTeX file. The GitHub package contains cooling reference arrays and model descriptions only; the cooling solver and runner stay separate.
+Cas A uses 307–345 yr at reference epoch 2007, from Fesen’s 1681 ± 19 explosion date, and L∞=(5.6–9.3)×10³³ erg/s, with error bars only. Four primary references are recorded in the audit and BibTeX file. The GitHub package contains cooling reference arrays and model descriptions only; the cooling solver and runner stay separate.
 
-Vela Jr (source 3) is included for discussion. Its provisional marker uses the Ho2026 cool-surface branch, not the mixed-component WEB interval. Age, distance and final luminosity bounds remain pending; see the new audit discussion.
+Vela Jr (source 3) uses age 1.6–5.1 kyr and the Ho2026 cool-surface luminosity range (1.3–4.0) × 10³² erg/s. The geometric age marker is 2.86 kyr; the distance and spectral assumptions remain caveats.
 
 Vela Jr age adopted: 1.6–5.1 kyr, older wind scenario retained as caveat. Upper-limit audits opened for B1727−47 (assuming the user's B1757 was a typo) and J0007+7303; their previous plotting limits remain provisional.
 

@@ -2,7 +2,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from collections import Counter
-import csv,json
+import csv,json,shutil,subprocess,sys,tempfile
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 class Page(HTMLParser):
@@ -34,7 +34,7 @@ def main():
  assert len(sample)==41 and len({x['source_id'] for x in sample})==41
  vv=next(x for x in sample if x['source_id']=='21');assert float(vv['L_inf_erg_s_lo'])==v['L_inf_erg_s_lo']
  assert all(x['source_class'] in ('RPP','XINS','UL','Hot-spot PSR') or x['source_id'] in ('3','13') for x in sample)
- c=next(x for x in sample if x['source_id']=='13');assert float(c['age_yr_lo'])==320 and float(c['age_yr_hi'])==339
+ c=next(x for x in sample if x['source_id']=='13');assert float(c['age_yr_lo'])==307 and float(c['age_yr_hi'])==345
  assert float(c['L_inf_erg_s_lo'])==5.6e33 and float(c['L_inf_erg_s_hi'])==9.3e33
  with (ROOT/'data/sources.csv').open() as f: active=list(csv.DictReader(f))
  assert len(active)==74 and not {'1','204','205'} & {x['source_id'] for x in active}
@@ -53,5 +53,16 @@ def main():
    target=path.parent/link.split('#')[0].split('?')[0];assert target.exists(),link
  assert len(all_ids)==74
  assert (ROOT/'data/raw/marino2024_sources.json').exists()
- print('Validated 41 source records, adopted decisions, HTML structure and internal links.')
+ # Re-run the deterministic data and HTML generators in an isolated copy, so
+ # validation detects stale generated files without changing the working tree.
+ with tempfile.TemporaryDirectory() as tmp:
+  tmp_root=Path(tmp)
+  for directory in ('scripts','data','docs'):
+   shutil.copytree(ROOT/directory,tmp_root/directory)
+  for script in ('export_plot_sample.py','update_catalogue.py'):
+   subprocess.run([sys.executable,str(tmp_root/'scripts'/script)],cwd=tmp_root,check=True,stdout=subprocess.DEVNULL)
+  for relative in ('data/current_plot_sample.csv','docs/index.html','docs/magnetar.html'):
+   assert (ROOT/relative).read_bytes()==(tmp_root/relative).read_bytes(), f'Stale generated file: {relative}; run python scripts/rebuild.py'
+  assert (ROOT/'README.md').read_bytes()==(ROOT/'docs/project_readme.md').read_bytes(), 'Stale docs/project_readme.md; run python scripts/rebuild.py'
+ print('Validated 41 source records, generated data and HTML, and internal links.')
 if __name__=='__main__':main()

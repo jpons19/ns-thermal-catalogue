@@ -24,7 +24,10 @@ def main():
   if sid=='3':
    d=decisions[sid];r['age_yr']=d['display_age_yr'];r['age_yr_lo']=d['display_age_yr_lo'];r['age_yr_hi']=d['display_age_yr_hi']
    r['L_inf_erg_s']=d['display_L_inf_erg_s'];r['L_inf_erg_s_lo']=d['display_L_inf_erg_s_lo'];r['L_inf_erg_s_hi']=d['display_L_inf_erg_s_hi']
-   status=d['status'];notes=d['notes'];age_ref='HO2026_DISPLAY_ONLY'
+   status=d['status'];notes=d['notes'];age_ref='REVIEW_ADOPTED'
+  elif sid=='16':
+   d=decisions[sid];r['age_yr']=d['display_marker_age_yr'];r['age_yr_lo']=d['age_yr_lo'];r['age_yr_hi']=d['age_yr_hi']
+   status=d['status'];notes=d['notes'];age_ref='REVIEW_ADOPTED'
   elif sid=='13':
    d=decisions[sid];r['age_yr']=d['display_marker_age_yr'];r['age_yr_lo']=d['age_yr_lo'];r['age_yr_hi']=d['age_yr_hi']
    r['L_inf_erg_s']=d['fiducial_L_inf_erg_s'];r['L_inf_erg_s_lo']=d['L_inf_erg_s_lo'];r['L_inf_erg_s_hi']=d['L_inf_erg_s_hi']

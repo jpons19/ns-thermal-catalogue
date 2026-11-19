@@ -50,11 +50,11 @@
       },
       "flux": {
         "status": "open",
-        "reason": "Provisional cool-surface atmosphere component differs from the hot-spot-dominated total thermal emission; spectral selection remains open."
+        "reason": "Ho2026 cool-surface luminosity range selected; model dependence and the distinction from the hot-spot-dominated total remain."
       },
       "temperature": {
         "status": "open",
-        "reason": "Provisional cool-surface atmosphere component differs from the hot-spot-dominated total thermal emission; spectral selection remains open."
+        "reason": "Ho2026 cool-surface luminosity selected; temperatures remain model and component dependent."
       },
       "field": {
         "status": "limited",
@@ -327,8 +327,8 @@
     },
     "16": {
       "age": {
-        "status": "open",
-        "reason": "20–60 kyr proper-motion/remnant age differs strongly from 620 kyr spin-down age; birth period and birthplace assumptions matter."
+        "status": "updated",
+        "reason": "Adopted 20–60 kyr kinematic working range; explosion site is uncertain and older homogeneous-medium remnant models remain alternatives. Suzuki ~114 kyr is not retained owing to apparent astrometric inconsistencies."
       },
       "distance": {
         "status": "open",

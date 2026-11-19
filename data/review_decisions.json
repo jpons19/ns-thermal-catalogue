@@ -14,7 +14,7 @@
         "V13"
       ],
       "marker_policy": "Retain WEB catalogue point for comparison; no new best estimate selected.",
-      "notes": "Rounded selected bounds, not exhaustive confidence limits; see audit section 3."
+      "notes": "Rounded selected bounds, not exhaustive confidence limits. The 40 kyr ceiling is conditional on extrapolating the low braking index and torque law over the lifetime. The retained luminosity marker lies close to the upper edge; see audit section 3."
     },
     "33": {
       "name": "PSR B2334+61",
@@ -62,8 +62,8 @@
     "13": {
       "name": "Cas A / CXOU J232327.8+584842",
       "status": "accepted_reference_errorbars_only",
-      "age_yr_lo": 320,
-      "age_yr_hi": 339,
+      "age_yr_lo": 307,
+      "age_yr_hi": 345,
       "display_marker_age_yr": 326.2,
       "L_inf_erg_s_lo": 5.6e+33,
       "L_inf_erg_s_hi": 9.3e+33,
@@ -75,12 +75,12 @@
         "Ho2021",
         "PosseltPavlov2022"
       ],
-      "notes": "Accepted carbon-atmosphere whole-surface reference; retain catalogue spectral epochs, not age advanced to 2026. Age primarily from ejecta expansion, historical sighting tentative. Adopted luminosity bracket, not a claim of identical fits or cooling slopes; earlier V13 alternatives remain provenance."
+      "notes": "Fesen et al. explosion epoch 1681 ± 19 CE converted to 307–345 yr at the fixed reference epoch 2007; uncertainty is conditional on the ejecta model. The previous 320–339 yr WEB interval is retained only in imported measurements and does not represent this uncertainty. The catalogue marker 326.2 yr is retained as a display location; luminosity range is unchanged."
     },
     "3": {
       "name": "Vela Jr / CXOU J085201.4−461753",
-      "status": "age_adopted_luminosity_reference_provisional",
-      "display_age_yr": 3498.5711369071805,
+      "status": "age_and_ho_cool_luminosity_adopted",
+      "display_age_yr": 2856.57137141714,
       "display_age_yr_lo": 1600,
       "display_age_yr_hi": 5100,
       "display_L_inf_erg_s": 2.2803508501982763e+32,
@@ -92,7 +92,7 @@
       "distance_kpc_candidate": 1.41,
       "distance_kpc_candidate_lo": 1.27,
       "distance_kpc_candidate_hi": 1.55,
-      "plot_style": "provisional_reference_marker_no_adopted_box",
+      "plot_style": "adopted_point_with_errorbars_no_box",
       "references": [
         "Allen2015",
         "Marino2024",
@@ -120,7 +120,7 @@
           "assumption": "Sedov-Taylor using two NW-rim expansion measurements"
         }
       ],
-      "notes": "Adopted age 1.6–5.1 kyr; older steady-wind scenario retained as caveat outside selected bounds. Distance and cool/total luminosity branches retained separately. Cool-surface plot is provisional, without final expanded luminosity decision.",
+      "notes": "Adopt age 1.6–5.1 kyr and Ho2026 cool-surface luminosity 1.3–4.0 × 10^32 erg/s as error bars only. Ho range spans model medians, not a common statistical confidence interval; geometric age marker is the midpoint of 1.6–5.1 kyr and is illustrative. Marino2024 results are compatible in order of magnitude but refer to different spectral components and partially shared data. P20 high carbon branch excluded from adopted range. Distance, spectral model and wind-age caveats remain.",
       "age_yr_lo": 1600,
       "age_yr_hi": 5100,
       "plot_label": "Vela Jr."
@@ -185,6 +185,14 @@
       "plot_style": "upper_limit_arrow_with_age_errorbar_no_box",
       "temperature_upper_limit_eV": 67.21519945371071,
       "temperature_upper_limit_reference": "Li2005 whole-surface fixed-12-km BB, 3 sigma at 2 kpc"
+    },
+    "16": {
+      "name": "PSR J0538+2817 / S147",
+      "status": "age_20_60_kyr_adopted_luminosity_catalogue",
+      "age_yr_lo": 20000,
+      "age_yr_hi": 60000,
+      "display_marker_age_yr": 30000,
+      "notes": "Adopt 20–60 kyr as working kinematic interval, not a common confidence interval; ~114 kyr Suzuki value has apparent proper-motion and coordinate inconsistencies requiring verification. Older remnant dynamical ages remain conditional on ambient profile and geometry. Luminosity unchanged from P20/WEB."
     }
   }
 }
