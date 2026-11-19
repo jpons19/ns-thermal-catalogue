@@ -16,16 +16,21 @@ with (ROOT/'data/review_decisions.json').open() as stream:
     REVIEW = json.load(stream)['sources']
 VELA = REVIEW['21']
 B2334 = REVIEW['33']
+MONOGEM = REVIEW['20']
 
 parser = argparse.ArgumentParser(description='Labelled neutron-star luminosity-age diagram')
 parser.add_argument('--b2334-extended', action='store_true', help='Overlay provisional B2334 uncertainty envelope')
 parser.add_argument('--b2334-marino-distance', action='store_true', help='Compare Marino distance with original point and conditional Potekhin rescaling')
 parser.add_argument('--vela-revised', action='store_true', help='Show accepted Vela age-luminosity box; carry B2334 working selection')
 parser.add_argument('--original-catalogue', action='store_true', help='Reproduce original catalogue locations without review overlays')
+parser.add_argument('--monogem-revised', action='store_true', help='Show current review ranges, with Monogem error bars (default)')
+parser.add_argument('--cooling-curves', action='store_true', help='Overlay saved reference and high-mass cooling arrays')
 args = parser.parse_args()
-if sum([args.b2334_extended,args.b2334_marino_distance,args.vela_revised,args.original_catalogue]) > 1:
+if sum([args.b2334_extended,args.b2334_marino_distance,args.vela_revised,args.original_catalogue,args.monogem_revised]) > 1:
     parser.error('Choose at most one plotting mode')
-if not any([args.b2334_extended,args.b2334_marino_distance,args.vela_revised,args.original_catalogue]):
+if not any([args.b2334_extended,args.b2334_marino_distance,args.vela_revised,args.original_catalogue,args.monogem_revised]):
+    args.monogem_revised = True
+if args.monogem_revised:
     args.vela_revised = True
 if args.b2334_marino_distance:
     args.b2334_extended = True
@@ -43,12 +48,13 @@ redshift_13km = 1 / np.sqrt(1 - 2.95325 * 1.4 / 13)
 B2334_L_HI = 4 * np.pi * (13e5 * redshift_13km)**2 * 5.670374419e-5 * ((0.65+0.13)*1e6)**4
 
 DATA = ROOT/'data'
+EXCLUDED=set(json.loads((ROOT/'data/excluded_sources.json').read_text())['sources'])
 (ROOT/'figures').mkdir(exist_ok=True)
 with (DATA/'measurements.csv').open() as stream:
     entries = list(csv.DictReader(stream))
 by_id = defaultdict(list)
 for row in entries:
-    if row['class'] in ('RPP', 'XINS', 'UL', 'Hot-spot PSR') and row['source_id'] != '205':
+    if (row['class'] in ('RPP', 'XINS', 'UL', 'Hot-spot PSR') or row['source_id'] in ('3','13')) and row['source_id'] not in EXCLUDED:
         by_id[int(row['source_id'])].append(row)
 points=[]
 for source_id, alternatives in by_id.items():
@@ -72,7 +78,7 @@ for source_id, alternatives in by_id.items():
     row['basis']=basis
     row['id']=source_id
     points.append(row)
-assert len(points)==40
+assert len(points)==41
 print(Counter(p['basis'] for p in points))
 
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.labelsize':12,
@@ -82,9 +88,9 @@ fig,axes=plt.subplots(1,2,figsize=(18,10.2),sharex=True,sharey=True)
 fig.subplots_adjust(left=.07,right=.98,bottom=.185,top=.87,wspace=.10)
 fig.suptitle('Thermally emitting neutron stars — catalogue locations',x=.07,y=.965,ha='left',fontsize=21,weight='medium')
 fig.text(.07,.927,'Rotation-powered pulsars and X-ray isolated neutron stars · provisional values for discussion',fontsize=12,color='#56646b')
-colors={'RPP':'#246187','XINS':'#b36a15','UL':'#246187','Hot-spot PSR':'#86719f'}
-markers={'RPP':'o','XINS':'D','UL':'v','Hot-spot PSR':'s'}
-aliases={14:'J0205+6449 †',17:'J0617+2221 (IC 443)',19:'Geminga',20:'B0656+14 (Monogem)',21:'Vela',33:'B2334+61 †',42:'RX J1308 (RBS 1223)',47:'Crab',202:'B0950+08',204:'eRASSU J1317'}
+colors={'RPP':'#246187','XINS':'#b36a15','UL':'#246187','Hot-spot PSR':'#86719f','CCO/TINS':'#287549'}
+markers={'RPP':'o','XINS':'D','UL':'v','Hot-spot PSR':'s','CCO/TINS':'*'}
+aliases={3:'Vela Jr.',13:'Cas A',14:'J0205+6449 †',17:'J0617+2221 (IC 443)',19:'Geminga',20:'B0656+14 (Monogem)',21:'Vela',33:'B2334+61 †',42:'RX J1308 (RBS 1223)',47:'Crab',202:'B0950+08'}
 
 def label(p):
     if p['id'] in aliases:
@@ -92,13 +98,18 @@ def label(p):
     return p['name'].replace('PSR ','').replace('RX J','RX J').replace('.0-5022','−5022').replace('.4-3125','−3125').replace('.4-4123','−4123').replace('.3+3249','+3249').replace('.5-3754','−3754').replace('.0+0654','+0654')
 
 for ax,basis in zip(axes,('independent','characteristic')):
-    ax.set(xscale='log',yscale='log',xlim=(450,5e7),ylim=(1.1e28,1.4e35))
+    ax.set(xscale='log',yscale='log',xlim=(220,5e7),ylim=(1.1e28,1.4e35))
     ax.set_xlabel('Age (yr)' if basis=='independent' else r'Characteristic age $\tau_c=P/(2\dot P)$ (yr)',labelpad=10)
     ax.grid(axis='both',which='major',color='#dce2e4',linewidth=.7,zorder=0)
     ax.tick_params(which='both',direction='out')
     group=[p for p in points if p['basis']==basis]
     ax.set_title(('Independent age estimate' if basis=='independent' else 'Characteristic age only in the catalogue')+f'  ·  {len(group)} sources',loc='left',pad=15)
     texts=[]
+    if args.cooling_curves:
+        curves=np.genfromtxt(DATA/'cooling_reference_curves.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
+        for model,style in [('reference','-'),('high_mass','--')]:
+            c=curves[curves['model']==model]
+            ax.plot(c['time_years'],c['L_infinity_erg_s'],style,color='#292929',lw=1.8,zorder=2)
     if args.b2334_extended and basis == 'independent':
         ax.add_patch(Rectangle(
             (B2334_AGE_LO, B2334_L_LO),
@@ -129,6 +140,9 @@ for ax,basis in zip(axes,('independent','characteristic')):
     if args.vela_revised and basis == 'independent':
         ax.add_patch(Rectangle((VELA['age_yr_lo'],VELA['L_inf_erg_s_lo']),VELA['age_yr_hi']-VELA['age_yr_lo'],VELA['L_inf_erg_s_hi']-VELA['L_inf_erg_s_lo'],facecolor='#339d91',edgecolor='#086f66',alpha=.28,linewidth=1.6,zorder=1))
         ax.add_patch(Rectangle((B2334['display_age_yr_lo'],B2334['L_inf_erg_s_lo']),B2334['display_age_yr_hi']-B2334['display_age_yr_lo'],B2334['L_inf_erg_s_hi']-B2334['L_inf_erg_s_lo'],facecolor='#e5a83f',edgecolor='#b67517',alpha=.22,zorder=1))
+    if args.monogem_revised and basis == 'independent':
+        d=REVIEW['14']
+        ax.add_patch(Rectangle((d['age_yr_lo'],d['L_inf_erg_s_lo']),d['age_yr_hi']-d['age_yr_lo'],d['L_inf_erg_s_hi']-d['L_inf_erg_s_lo'],facecolor='#d96a78',edgecolor='#b03850',alpha=.23,lw=1.6,zorder=1))
     for p in group:
         x=float(p['age_yr']); y=float(p['L_inf_erg_s'])
         lo=float(p['age_yr_lo']) if p['age_yr_lo'] else x
@@ -142,17 +156,37 @@ for ax,basis in zip(axes,('independent','characteristic')):
             lo=B2334_AGE_LO; hi=7.7e3*1.1
         if args.vela_revised and p['id']==33:
             y=B2334['fiducial_L_inf_erg_s']; lower=B2334['marker_L_inf_erg_s_lo']; upper=B2334['marker_L_inf_erg_s_hi']; lo=B2334['display_age_yr_lo']; hi=B2334['marker_age_yr_hi']
+        if args.vela_revised and p['id']==14:
+            lo=REVIEW['14']['age_yr_lo']; hi=REVIEW['14']['age_yr_hi']
+        if p['id']==3:
+            d=REVIEW['3'];x=d['display_age_yr'];y=d['display_L_inf_erg_s']
+            lo=d['display_age_yr_lo'];hi=d['display_age_yr_hi'];lower=d['display_L_inf_erg_s_lo'];upper=d['display_L_inf_erg_s_hi']
+        if p['id']==13:
+            d=REVIEW['13'];x=d['display_marker_age_yr'];y=d['fiducial_L_inf_erg_s']
+            lo=d['age_yr_lo'];hi=d['age_yr_hi'];lower=d['L_inf_erg_s_lo'];upper=d['L_inf_erg_s_hi']
+        if args.monogem_revised and p['id'] in (17,30,46,48):
+            d=REVIEW[str(p['id'])];lo=d['age_yr_lo'];hi=d['age_yr_hi']
+            if p['id']==17:
+                x=d['display_marker_age_yr'];lower=d['L_inf_erg_s_lo'];upper=d['L_inf_erg_s_hi']
+        if args.monogem_revised and p['id']==20:
+            lo=MONOGEM['age_yr_lo'];hi=MONOGEM['age_yr_hi']
+            lower=MONOGEM['L_inf_erg_s_lo'];upper=MONOGEM['L_inf_erg_s_hi']
         ul=p['luminosity_upper_limit']=='True'
+        if args.monogem_revised and p['id']==30:
+            y=REVIEW['30']['L_inf_erg_s_upper_limit'];ul=True
         color='#b92d40' if args.b2334_extended and p['id']==33 else colors[p['class']]
+        if args.monogem_revised and p['id']==14: color='#b03850'
+
         if args.vela_revised and p['id']==21: color='#086f66'
         if args.vela_revised and p['id']==33: color='#a67320'
         ax.errorbar(x,y,xerr=[[max(0,x-lo)],[max(0,hi-x)]],
             yerr=[[y*.48],[0]] if ul else [[max(0,y-lower)],[max(0,upper-y)]],
             uplims=ul,fmt='none',ecolor=color,alpha=.65,capsize=2,elinewidth=1,zorder=2)
         face=color if basis=='independent' else 'white'
-        if p['id']==14:
+        if p['id'] in (3,14):
             face='white'
-        ax.scatter(x,y,s=46,marker=markers[p['class']],facecolors=face,edgecolors=color,linewidths=1.3,zorder=4)
+        if not (args.monogem_revised and p['id']==30):
+            ax.scatter(x,y,s=100 if p['id']==13 else 46,marker=markers[p['class']],facecolors=face,edgecolors=color,linewidths=1.3,zorder=4)
         texts.append(ax.text(x,y,label(p),fontsize=9.2,color=color,zorder=6,
                             bbox={'facecolor':'white','edgecolor':'none','alpha':.8,'pad':.5}))
     fig.canvas.draw()
@@ -173,8 +207,20 @@ elif args.b2334_marino_distance:
                    Line2D([],[],marker='D',ls='',color='#643994',mfc='white',label='Potekhin rescaled*')])
 elif args.b2334_extended:
     legend.append(Patch(facecolor='#cf5260', edgecolor='#b92d40', alpha=.3, label='B2334 extended range'))
-fig.legend(handles=legend,loc='lower left',bbox_to_anchor=(.065,.087 if args.b2334_marino_distance or args.vela_revised else .10),ncol=6 if args.b2334_marino_distance or args.vela_revised else (5 if args.b2334_extended else 4),frameon=False,columnspacing=1.7 if args.b2334_extended else 2.4)
-if args.vela_revised:
+if args.monogem_revised:
+    legend.append(Patch(facecolor='#d96a78',alpha=.4,label='J0205 selected envelope'))
+if args.cooling_curves:
+    for mass,style in [(1.4,'-'),(1.8,'--')]:
+        for ax in axes:
+            ax.plot([],[],style,color='#292929',label=f'BSk26 {mass:.1f} M☉')
+    axes[1].legend(loc='upper right',framealpha=.95,fontsize=10)
+fig.legend(handles=legend,loc='lower left',bbox_to_anchor=(.065,.081 if args.monogem_revised else .087 if args.b2334_marino_distance or args.vela_revised else .10),ncol=4 if args.monogem_revised else 6 if args.b2334_marino_distance or args.vela_revised else (5 if args.b2334_extended else 4),frameon=False,columnspacing=1.7 if args.b2334_extended else 2.4)
+if args.monogem_revised:
+    fig.text(.07,.060,'IC 443: adopted age 3–20 kyr and L∞ = (1.0–3.5) × 10³² erg/s, shown as error bars. Luminosity marker retained for comparison.',fontsize=9.6,color='#4d5b62')
+    fig.text(.07,.038,'J0205 spans small-area and whole-surface interpretations; its historical age is disputed. Review boxes have no common confidence level.',fontsize=9.6,color='#4d5b62')
+    fig.text(.07,.016,'Open green star: Vela Jr.; filled green star: Cas A. Monogem: error bars only. Tracks use true age; τc is a proxy.',fontsize=9.6,color='#4d5b62')
+    filename = 'ns_monogem_revised_errors.png'
+elif args.vela_revised:
     fig.text(.07,.073,f"Vela: accepted age {VELA['age_yr_lo']/1e3:g}–{VELA['age_yr_hi']/1e3:g} kyr; L∞ = ({VELA['L_inf_erg_s_lo']/1e32:g}–{VELA['L_inf_erg_s_hi']/1e32:g}) × 10³² erg/s. Catalogue point retained for comparison.",fontsize=9.6,color='#4d5b62')
     fig.text(.07,.048,'Vela envelope spans spectral/radius interpretations; Viganò 2013 excluded. Selected bounds have no common statistical confidence level.',fontsize=9.6,color='#4d5b62')
     fig.text(.07,.023,'B2334 retains the working Marino-distance selection; its age extent remains provisional. All other sources retain the original catalogue values.',fontsize=9.6,color='#4d5b62')
@@ -194,5 +240,7 @@ else:
     fig.text(.07,.048,'† J0205: historical SN 1181 association disputed. B2334: atmosphere temperature/redshift convention under review. Monogem uses the V13 remnant age (~79 kyr).',fontsize=9.7,color='#4d5b62')
     fig.text(.07,.023,'Each source appears once. Temperature components, emitting areas, distances and age assumptions remain to be selected source by source.',fontsize=9.7,color='#4d5b62')
     filename = 'ns_luminosity_vs_age_labelled.png'
+if args.cooling_curves:
+    filename = 'ns_original_with_cooling.png' if args.original_catalogue else 'ns_velajr_with_cooling.png'
 fig.savefig(ROOT/'figures'/filename,dpi=185)
-print('Saved plot; all 40 sources labelled.')
+print('Saved plot; all 41 sources labelled.')

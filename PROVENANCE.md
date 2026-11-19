@@ -8,8 +8,8 @@ Prepared 18 November 2026 from the supplied NS thermal catalogue project and the
 - The current `data/measurements.csv` is byte-identical to the table in both the original project and the later plotting package. Original measurements remain historical records.
 - The Potekhin website snapshot is dated **3 August 2026** in the supplied project. This packaging task did not refresh the external catalogue or perform another full literature audit.
 - `data/raw/marino2024_sources.json` is the original requested three-source JSON from https://github.com/Blitzman/workshop_fisica/blob/main/observations/marino2024_sources.json.
-- `docs/ns_thermal_literature_audit.md` includes all decisions through Vela's accepted 11–40 kyr and (2.0–4.4) × 10³² erg/s envelope.
-- `docs/index.html` is the updated source catalogue, retaining the reported-measurement tables and the revised Vela/B2334 discussions.
+- `docs/ns_thermal_literature_audit.md` includes all decisions through Monogem's accepted 70–120 kyr and (2.5–9.0) × 10³² erg/s envelope, including the unreconciled P20 value.
+- `docs/index.html` is the updated source catalogue, retaining the reported-measurement tables and the revised Monogem/Vela/B2334 discussions.
 
 ## Main literature keys
 
@@ -24,7 +24,7 @@ Primary references and table/section locators for individual sources appear in t
 
 ## Current versus historical calculations
 
-`data/review_decisions.json` and the current audit define the review selections. The two initial B2334 comparison images in `figures/history/` are historical diagnostics; the earliest box includes alternatives later excluded. The default figure uses the accepted Vela box and the provisional B2334 selection. Other plotted sources are unreviewed catalogue values.
+`data/review_decisions.json` and the current audit define the review selections. The two initial B2334 comparison images in `figures/history/` are historical diagnostics; the earliest box includes alternatives later excluded. The default figure uses the accepted Monogem and Vela boxes and the provisional B2334 selection. Other plotted sources are unreviewed catalogue values.
 
 The legacy workbook, data module and `cooling_comparison.csv` remain exploratory imported products. Their older selections, field-decay age diagnostics, source exclusions and figure conventions may differ from the present review. Do not treat them as synchronized current results. Running `legacy/run_all.sh` is a separate workflow with its original dependencies and tools, including optional LaTeX/LibreOffice steps.
 

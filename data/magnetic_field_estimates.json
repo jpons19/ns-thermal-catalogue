@@ -1,0 +1,449 @@
+{
+  "convention": "Equatorial Bdip = 3.2e19 sqrt(P Pdot) G, canonical vacuum dipole estimate; V13 polar estimates divided by two. No new field measurements.",
+  "sources": {
+    "2": {
+      "B_dip_G": 29000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "3": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "4": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "5": {
+      "B_dip_G": 98000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "6": {
+      "B_dip_G": 450000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "7": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "8": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "9": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "10": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "11": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "12": {
+      "B_dip_G": 31000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "13": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "14": {
+      "B_dip_G": 3600000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "15": {
+      "B_dip_G": 2400000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "16": {
+      "B_dip_G": 730000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "17": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "18": {
+      "B_dip_G": 4900000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "19": {
+      "B_dip_G": 1600000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "open",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. Timing/transcription discrepancy is documented in the audit; keep the reported field distinct from recomputation with the inconsistent printed period derivative."
+    },
+    "20": {
+      "B_dip_G": 4700000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "21": {
+      "B_dip_G": 3400000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "22": {
+      "B_dip_G": 1100000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "23": {
+      "B_dip_G": 7800000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "24": {
+      "B_dip_G": 3100000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "25": {
+      "B_dip_G": 1800000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "open",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. Timing/transcription discrepancy is documented in the audit; keep the reported field distinct from recomputation with the inconsistent printed period derivative."
+    },
+    "26": {
+      "B_dip_G": 2700000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "27": {
+      "B_dip_G": 6400000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "28": {
+      "B_dip_G": 2800000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "29": {
+      "B_dip_G": 520000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "30": {
+      "B_dip_G": 490000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "31": {
+      "B_dip_G": 1600000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "32": {
+      "B_dip_G": 3200000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "33": {
+      "B_dip_G": 9900000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "34": {
+      "B_dip_G": 32000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "35": {
+      "B_dip_G": 41000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "36": {
+      "B_dip_G": 15000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "37": {
+      "B_dip_G": 75000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "38": {
+      "B_dip_G": 50000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "39": {
+      "B_dip_G": 10000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "40": {
+      "B_dip_G": 25000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "updated",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. Field accompanies the newer timing solution; comparison with older inferred fields is epoch/solution dependent."
+    },
+    "41": {
+      "B_dip_G": 11000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "updated",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. Field accompanies the newer timing solution; comparison with older inferred fields is epoch/solution dependent."
+    },
+    "42": {
+      "B_dip_G": 34000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "43": {
+      "B_dip_G": null,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "No timing-based magnetic-field estimate available in the imported records; a spectral model field is not substituted."
+    },
+    "44": {
+      "B_dip_G": 15000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "45": {
+      "B_dip_G": 20000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "updated",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. WEB corrects the P20 factor-of-ten field error."
+    },
+    "46": {
+      "B_dip_G": 10800000000000.0,
+      "reference": "Audit correction from WEB timing",
+      "status": "updated",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. WEB field corrected to the approximately 1.08e13 G value from its internally consistent P and Pdot; imported 1.1e12 G is a factor-of-ten inconsistency."
+    },
+    "47": {
+      "B_dip_G": 3800000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "48": {
+      "B_dip_G": 12000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "49": {
+      "B_dip_G": 350000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "50": {
+      "B_dip_G": 2600000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "51": {
+      "B_dip_G": 780000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "52": {
+      "B_dip_G": 2000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "53": {
+      "B_dip_G": 2100000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "54": {
+      "B_dip_G": 400000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "55": {
+      "B_dip_G": 520000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "101": {
+      "B_dip_G": 62946270589708.31,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "102": {
+      "B_dip_G": 125594321575479.11,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "103": {
+      "B_dip_G": 99763115748444.14,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "104": {
+      "B_dip_G": 199053585276748.47,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "105": {
+      "B_dip_G": 315478672240097.1,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "106": {
+      "B_dip_G": 397164117362141.06,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "107": {
+      "B_dip_G": 397164117362141.06,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "108": {
+      "B_dip_G": 500000000000000.0,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "109": {
+      "B_dip_G": 500000000000000.0,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "110": {
+      "B_dip_G": 629462705897083.1,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "111": {
+      "B_dip_G": 199053585276748.47,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "112": {
+      "B_dip_G": 250593616813635.72,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "113": {
+      "B_dip_G": 500000000000000.0,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "114": {
+      "B_dip_G": 629462705897083.1,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "115": {
+      "B_dip_G": 1581138830084189.8,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "116": {
+      "B_dip_G": 6294627058970.831,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "117": {
+      "B_dip_G": 25059361681363.574,
+      "reference": "V13 log polar-field transcription; divided by two to express equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. V13 log polar-field transcription; divided by two to express equatorial dipole estimate."
+    },
+    "201": {
+      "B_dip_G": 8200000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "202": {
+      "B_dip_G": 240000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    },
+    "203": {
+      "B_dip_G": 15000000000000.0,
+      "reference": "WEB equatorial dipole estimate",
+      "status": "limited",
+      "reason": "Canonical spin-down equatorial field estimate, not a direct surface-field measurement. WEB equatorial dipole estimate. This audit has not independently validated the torque, geometry or stellar-structure assumptions."
+    }
+  }
+}

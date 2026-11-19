@@ -36,6 +36,155 @@
         "M24"
       ],
       "notes": "Age span is a display placeholder, not an adopted physical interval at 3.1 kpc. P20 13 km fit is distance compatible, not refit to the accepted distance. Direct McGowan alternatives excluded; inherited provenance retained."
+    },
+    "20": {
+      "name": "PSR B0656+14 / Monogem",
+      "status": "adopted_review_envelope_with_unresolved_compilation",
+      "age_yr_lo": 70000,
+      "age_yr_hi": 120000,
+      "L_inf_erg_s_lo": 2.5e+32,
+      "L_inf_erg_s_hi": 9e+32,
+      "marker_policy": "Retain previous WEB luminosity and fallback age for comparison; no new best estimate selected.",
+      "notes": "Selected envelope deliberately retains the unreconciled P20 high luminosity; no common confidence level. See primary-source checks in audit section 4.",
+      "plot_style": "point_with_adopted_errorbars_no_shaded_box"
+    },
+    "14": {
+      "name": "PSR J0205+6449 / 3C 58",
+      "status": "adopted_luminosity_envelope_age_provisional",
+      "age_yr_lo": 800,
+      "age_yr_hi": 7000,
+      "tau_c_yr_corrected": 5380,
+      "notes": "Selected review envelope deliberately retains disputed SN 1181 branch despite Pa 30 evidence. Upper bound is an expansion timescale, not a rigorous age ceiling. Printed M24 54–58.8 kyr values excluded as numerical inconsistencies. Luminosity envelope includes small-area M24 atmosphere/BB and P20 whole-surface atmosphere scenarios; mixed confidence levels. Conditional hidden-surface limit is separate.",
+      "L_inf_erg_s_lo": 2e+31,
+      "L_inf_erg_s_hi": 3.4e+32,
+      "marker_policy": "Retain previous catalogue marker; no new best estimate selected."
+    },
+    "13": {
+      "name": "Cas A / CXOU J232327.8+584842",
+      "status": "accepted_reference_errorbars_only",
+      "age_yr_lo": 320,
+      "age_yr_hi": 339,
+      "display_marker_age_yr": 326.2,
+      "L_inf_erg_s_lo": 5.6e+33,
+      "L_inf_erg_s_hi": 9.3e+33,
+      "fiducial_L_inf_erg_s": 7.216647421067487e+33,
+      "plot_style": "point_with_errorbars_no_box",
+      "references": [
+        "Fesen2006",
+        "HoHeinke2009",
+        "Ho2021",
+        "PosseltPavlov2022"
+      ],
+      "notes": "Accepted carbon-atmosphere whole-surface reference; retain catalogue spectral epochs, not age advanced to 2026. Age primarily from ejecta expansion, historical sighting tentative. Adopted luminosity bracket, not a claim of identical fits or cooling slopes; earlier V13 alternatives remain provenance."
+    },
+    "3": {
+      "name": "Vela Jr / CXOU J085201.4−461753",
+      "status": "age_adopted_luminosity_reference_provisional",
+      "display_age_yr": 3498.5711369071805,
+      "display_age_yr_lo": 1600,
+      "display_age_yr_hi": 5100,
+      "display_L_inf_erg_s": 2.2803508501982763e+32,
+      "display_L_inf_erg_s_lo": 1.3e+32,
+      "display_L_inf_erg_s_hi": 4e+32,
+      "display_component": "cool_surface",
+      "display_reference": "Ho2026",
+      "distance_reference": "Suherli2026",
+      "distance_kpc_candidate": 1.41,
+      "distance_kpc_candidate_lo": 1.27,
+      "distance_kpc_candidate_hi": 1.55,
+      "plot_style": "provisional_reference_marker_no_adopted_box",
+      "references": [
+        "Allen2015",
+        "Marino2024",
+        "Potekhin2020",
+        "Suherli2026",
+        "Ho2026"
+      ],
+      "age_scenarios": [
+        {
+          "reference": "Allen2015",
+          "lo": 2400,
+          "hi": 5100,
+          "assumption": "uniform medium hydrodynamics"
+        },
+        {
+          "reference": "Marino2024",
+          "lo": 2500,
+          "hi": 5000,
+          "assumption": "rounded remnant age"
+        },
+        {
+          "reference": "Suherli2026",
+          "lo": 1600,
+          "hi": 3300,
+          "assumption": "Sedov-Taylor using two NW-rim expansion measurements"
+        }
+      ],
+      "notes": "Adopted age 1.6–5.1 kyr; older steady-wind scenario retained as caveat outside selected bounds. Distance and cool/total luminosity branches retained separately. Cool-surface plot is provisional, without final expanded luminosity decision.",
+      "age_yr_lo": 1600,
+      "age_yr_hi": 5100,
+      "plot_label": "Vela Jr."
+    },
+    "48": {
+      "name": "PSR B1727−47",
+      "status": "age_adopted_upper_limit_provisional",
+      "age_yr_lo": 40000,
+      "age_yr_hi": 80000,
+      "notes": "Age interval adopted 18 November 2026 as a review range, without a common confidence level. Original luminosity ceiling and marker retained; spectral provenance/component caveats remain in the audit."
+    },
+    "46": {
+      "name": "PSR J0007+7303",
+      "status": "age_adopted_upper_limit_provisional",
+      "age_yr_lo": 9000,
+      "age_yr_hi": 13000,
+      "notes": "Age interval adopted 18 November 2026 as a review range, without a common confidence level. Original luminosity ceiling and marker retained; spectral provenance/component caveats remain in the audit."
+    },
+    "17": {
+      "name": "CXOU J061705.3+222127 / IC 443",
+      "status": "adopted_review_envelope",
+      "age_yr_lo": 3000,
+      "age_yr_hi": 20000,
+      "display_marker_age_yr": 7745.966692414834,
+      "excluded_age_references": [
+        "Chevalier1999",
+        "NS_cooling_model_ages"
+      ],
+      "notes": "Adopt age 3–20 kyr, distance 1.6–1.7 kpc and L∞=(1.0–3.5)e32 erg/s. Rounded scenario envelope from BB/NSA interpretations, their quoted errors and conditional distance scaling; no common confidence level or spectral refit. Exclude old Chevalier and NS cooling-model ages from age selection. BB small-area versus NSA whole-surface interpretation remains a caveat.",
+      "distance_kpc": 1.65,
+      "distance_kpc_lo": 1.6,
+      "distance_kpc_hi": 1.7,
+      "distance_references": [
+        "Yu2019",
+        "Dincel2024",
+        "Dincel2026"
+      ],
+      "L_inf_erg_s_lo": 1e+32,
+      "L_inf_erg_s_hi": 3.5e+32,
+      "marker_policy": "Geometric age midpoint for display; previous catalogue luminosity 2.6e32 retained as reference, not a new best fit."
+    },
+    "30": {
+      "name": "PSR B1951+32 / CTB 80",
+      "status": "adopted_age_distance_whole_surface_upper_limit",
+      "age_yr_lo": 45000,
+      "age_yr_hi": 85000,
+      "references": [
+        "Migliazzo2002",
+        "Zeiger2008",
+        "Li2005",
+        "LeahyRanasinghe2012",
+        "Potekhin2020"
+      ],
+      "marker_policy": "Retain 64 kyr age display anchor; replace detected hot-spot luminosity by whole-surface ceiling.",
+      "notes": "Accepted 18 November 2026: age 45–85 kyr, distance 1–2 kpc, whole-surface L_inf < 3.8e32 erg/s. Published 3-sigma fixed-12-km BB ceiling retained at reference distance 2 kpc; no distance refit or invented luminosity lower bound. Hot-spot measurement remains in historical records, excluded from current cooling point.",
+      "distance_kpc_lo": 1.0,
+      "distance_kpc_hi": 2.0,
+      "luminosity_upper_limit": true,
+      "L_inf_erg_s_upper_limit": 3.8e+32,
+      "luminosity_reference_distance_kpc": 2.0,
+      "luminosity_component": "whole_surface_fixed_radius_BB",
+      "plot_style": "upper_limit_arrow_with_age_errorbar_no_box",
+      "temperature_upper_limit_eV": 67.21519945371071,
+      "temperature_upper_limit_reference": "Li2005 whole-surface fixed-12-km BB, 3 sigma at 2 kpc"
     }
   }
 }

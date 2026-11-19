@@ -1,0 +1,17 @@
+{
+  "review_date": "2026-11-19",
+  "sources": {
+    "204": {
+      "name": "eRASSU J131716.9−402647",
+      "reason": "Excluded by user: too uncertain and adds no useful constraint to this cooling catalogue."
+    },
+    "205": {
+      "name": "SN 1987A remnant",
+      "reason": "Excluded by user: too uncertain and adds no useful constraint to this cooling catalogue."
+    },
+    "1": {
+      "name": "1E 0102.2−7219",
+      "reason": "Removed from the active catalogue by user decision on 19 November 2026; uncertain neutron-star identity."
+    }
+  }
+}

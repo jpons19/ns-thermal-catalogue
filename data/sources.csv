@@ -1,5 +1,4 @@
 source_id,name,class,association,aliases,status
-1,1E 0102.2-7219,CCO/TINS,SNR 0102-72.3 (SMC) [disputed candidate; removed from web 25.11.2020],,historical_disputed
 2,RX J0822.0-4300,CCO/TINS,Puppis A,,catalogued
 3,CXOU J085201.4-461753,CCO/TINS,Vela Jr.,CXOU J0852-4617; Vela Jr,catalogued
 4,2XMM J104608.7-594306,CCO/TINS,Homunculus,,catalogued
@@ -74,5 +73,3 @@ source_id,name,class,association,aliases,status
 201,PSR J0554+3107,RPP,G179.0+2.6,,catalogued
 202,PSR B0950+08,RPP,---,,catalogued
 203,PSR J0837-2454,HB-PSR,---,,catalogued
-204,eRASSU J131716.9-402647,XINS,---,,catalogued
-205,SN 1987A remnant,UL,MCSNR J0535-6916,,remnant_upper_limit
