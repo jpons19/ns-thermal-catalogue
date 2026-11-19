@@ -110,7 +110,7 @@ for ax,basis in zip(axes,('independent','characteristic')):
     if args.cooling_curves:
         curves=np.genfromtxt(DATA/'cooling_five_eos.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
         for model,color,style in COOLING_STYLES:
-            c=curves[curves['model']==model]
+            c=curves[np.array([name.removesuffix('_Lmin1e30') for name in curves['model']])==model]
             ax.plot(c['time_years'],c['L_infinity_erg_s'],style,color=color,lw=1.7,zorder=2)
     if args.b2334_extended and basis == 'independent':
         ax.add_patch(Rectangle(

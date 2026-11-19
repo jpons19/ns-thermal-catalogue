@@ -23,11 +23,12 @@ def main():
  j=r['14'];assert (j['age_yr_lo'],j['age_yr_hi'],j['L_inf_erg_s_lo'],j['L_inf_erg_s_hi'])==(800,7000,2e31,3.4e32)
  assert (ROOT/'figures/ns_velajr_with_cooling.png').exists()
  curves=np.genfromtxt(ROOT/'data/cooling_five_eos.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
- assert set(curves['model'])=={'BSk22','BSk24','BSk25*','BSk26','DDFGOS(APR)*'}
+ models=np.array([name.removesuffix('_Lmin1e30') for name in curves['model']])
+ assert set(models)=={'BSk22','BSk24','BSk25*','BSk26','DDFGOS(APR)*'}
  for model in ['BSk22','BSk24','BSk25*','BSk26','DDFGOS(APR)*']:
-  c=curves[curves['model']==model];assert np.all(np.diff(c['time_years'])>0)
+  c=curves[models==model];assert np.all(np.diff(c['time_years'])>0)
   assert np.all(np.isfinite(c['L_infinity_erg_s'])) and np.all(c['L_infinity_erg_s']>0)
-  assert c['L_infinity_erg_s'][-1]<1e31
+  assert c['L_infinity_erg_s'][-1]<1e30
  assert b['distance_kpc']==3.1 and b['status']=='provisional_age_unresolved'
  with (ROOT/'data/current_plot_sample.csv').open() as f:sample=list(csv.DictReader(f))
  assert len(sample)==41 and len({x['source_id'] for x in sample})==41

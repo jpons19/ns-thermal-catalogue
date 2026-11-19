@@ -14,4 +14,4 @@ See `docs/DATA_DICTIONARY.md` for the imported table columns and `docs/ns_therma
 
 `magnetic_field_estimates.json` supplies normalized equatorial dipole estimates, convention and provenance for the fifth overview column. Missing timing fields are not replaced by assumed atmosphere-model fields. The combined inventory in sources.csv contains both HTML collections; membership is determined by class MAG.
 
-Current cooling plot data: `cooling_five_eos.csv`; the older `cooling_reference_curves.csv` is retained for provenance and is not plotted.
+Current cooling plot data: `cooling_five_eos.csv` contains the five supplied runs extended to the first accepted luminosity below 10³⁰ erg/s. The `_Lmin1e30` suffix in the CSV model identifiers denotes this stop criterion.

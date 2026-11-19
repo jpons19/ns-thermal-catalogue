@@ -284,7 +284,7 @@
     "14": {
       "age": {
         "status": "open",
-        "reason": "Open age issue: review retains 0.8–7 kyr with historical-association and expansion caveats for further discussion. SN 1181 association remains contested by the Pa 30 identification; the displayed interval is provisional."
+        "reason": "Open age issue: 0.8–7 kyr is a provisional envelope spanning a young decelerated-expansion model and several-kyr optical/radio interpretations. SN 1181 is not assumed: Pa 30 is its likely remnant. The bounds are not statistical or strict physical limits."
       },
       "distance": {
         "status": "open",
@@ -706,7 +706,7 @@
       },
       "distance": {
         "status": "updated",
-        "reason": "Marino distance 3.1 kpc (2.1–3.3) adopted; direct McGowan alternatives excluded from the working comparison."
+        "reason": "Marino distance 3.1 kpc (2.1–3.3) retained for the working box; Chen et al. extinction estimate ~0.95 kpc supports an alternative nearby remnant. The orange box does not include all near-distance luminosities."
       },
       "flux": {
         "status": "open",

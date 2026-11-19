@@ -24,7 +24,7 @@ Primary references and table/section locators for individual sources appear in t
 
 ## Current versus historical calculations
 
-`data/review_decisions.json` and the current audit define the review selections. The two initial B2334 comparison images in `figures/history/` are historical diagnostics; the earliest box includes alternatives later excluded. The default figure uses the accepted Monogem and Vela boxes and the provisional B2334 selection. Other plotted sources are unreviewed catalogue values.
+`data/review_decisions.json` and the current audit define the review selections. Superseded B2334 diagnostic figures have been removed; earlier alternatives are described in the audit. The default figure uses the accepted Monogem and Vela boxes and the provisional B2334 selection. Other plotted sources are unreviewed catalogue values.
 
 The legacy workbook, data module and `cooling_comparison.csv` remain exploratory imported products. Their older selections, field-decay age diagnostics, source exclusions and figure conventions may differ from the present review. Do not treat them as synchronized current results. Running `legacy/run_all.sh` is a separate workflow with its original dependencies and tools, including optional LaTeX/LibreOffice steps.
 

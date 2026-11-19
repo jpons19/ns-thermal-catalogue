@@ -35,7 +35,7 @@
         "P20",
         "M24"
       ],
-      "notes": "Age span is a display placeholder, not an adopted physical interval at 3.1 kpc. P20 13 km fit is distance compatible, not refit to the accepted distance. Direct McGowan alternatives excluded; inherited provenance retained."
+      "notes": "Age span is a display placeholder, not an adopted physical interval at 3.1 kpc. P20 13 km fit is distance compatible, not refit to the accepted distance. Direct McGowan alternatives excluded; inherited provenance retained. Retained orange box is a working cold-source comparison, not an envelope of the near-distance branch: Chen et al. 2025 find ~0.95 kpc; fixed-flux rescaling gives lower luminosities outside the box, not a self-consistent refit. Suzuki kinematic age lower limit is conditional; Dincel 22.7 kyr calculation requires clarification."
     },
     "20": {
       "name": "PSR B0656+14 / Monogem",
@@ -54,7 +54,7 @@
       "age_yr_lo": 800,
       "age_yr_hi": 7000,
       "tau_c_yr_corrected": 5380,
-      "notes": "Selected review envelope deliberately retains disputed SN 1181 branch despite Pa 30 evidence. Upper bound is an expansion timescale, not a rigorous age ceiling. Printed M24 54–58.8 kyr values excluded as numerical inconsistencies. Luminosity envelope includes small-area M24 atmosphere/BB and P20 whole-surface atmosphere scenarios; mixed confidence levels. Conditional hidden-surface limit is separate.",
+      "notes": "Retain 0.8–7 kyr as a provisional methodological envelope: young decelerating models (Kothes 2013) and several-kyr optical/radio scenarios; 0.8 is a rounded continuity choice, not the minimum of Kothes, and 7 kyr is a PWN expansion timescale, not a rigorous upper bound. SN 1181 is not assumed; Pa 30 is its likely remnant. Characteristic age depends on braking; pulsar proper motion does not determine an age. No common confidence level or equal endpoint weights. Luminosity envelope unchanged; conditional hidden-surface limit separate.",
       "L_inf_erg_s_lo": 2e+31,
       "L_inf_erg_s_hi": 3.4e+32,
       "marker_policy": "Retain previous catalogue marker; no new best estimate selected."

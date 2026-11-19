@@ -16,7 +16,7 @@ The unmodified JSON is archived in `data/raw/`. Literature references and table 
 | `data/vela_jr_ages.csv` | Both age ranges used for Vela Jr |
 | `data/references.csv` | Bibliographic keys and links |
 | `data/ns_cooling_data.py` | Standalone NumPy data and plotting helpers |
-| `figures/` | Luminosity–age comparison, literature cross-match, and field-decay age diagnostics |
+| Figures | Superseded legacy figures removed; current figures are in the project `figures/` directory. |
 | `notes/ns_thermal_data_notes.pdf` | Interpretation notes and checks from the original project, updated for the catalogue changes |
 
 For a cooling curve in years and photon luminosity at infinity in erg/s:
