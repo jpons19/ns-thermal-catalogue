@@ -1,5 +1,16 @@
 # Changelog
 
+## Review revision · 20 November 2026
+
+The generated plot sample and HTML pages are regenerated in this revision; the figures are not. They take effect at the next `python scripts/rebuild.py`.
+
+- J0205+6449: luminosity lower edge raised from 2×10³¹ (small-area fit) to 0.8×10³² erg/s. Age 0.8–7 kyr and the ~819 yr display marker kept. Conditional hidden-surface limit not plotted. Kothes (2013) check deferred.
+- J0007+7303: 3×10³¹ erg/s ceiling documented as the NSA local-temperature conversion of Caraveo et al. (2010). Conservative ceiling of about 10³² erg/s added as a dotted extension; the plotting code draws it for any upper limit with `L_inf_erg_s_upper_limit_conservative`. Reanalysis recommended.
+- B2334+61: single original box kept. Two-scenario analysis recorded in the audit only.
+- Vela: marker description corrected to 21.4 kyr (geometric midpoint of P20's 17–27 kyr). No data change.
+- Vela Jr: distance 1.41 (1.27–1.55) kpc adopted (Suherli2026), complementing the 19 November luminosity and marker decision.
+- Audit entries for J0205, J0007, B2334 and Vela Jr report their position relative to the minimal-cooling band of the 2026-11-20 cooling sweeps. That comparison is for information only and is not used to select ages.
+
 ## 0.1.0-review · 18 November 2026
 
 - Consolidated the current source catalogue, literature audit, raw measurements and reproducible plotting code.
