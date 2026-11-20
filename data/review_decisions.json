@@ -120,10 +120,13 @@
           "assumption": "Sedov-Taylor using two NW-rim expansion measurements"
         }
       ],
-      "notes": "Adopt age 1.6–5.1 kyr and Ho2026 cool-surface luminosity 1.3–4.0 × 10^32 erg/s as error bars only. Ho range spans model medians, not a common statistical confidence interval; geometric age marker is the midpoint of 1.6–5.1 kyr and is illustrative. Marino2024 results are compatible in order of magnitude but refer to different spectral components and partially shared data. P20 high carbon branch excluded from adopted range. Distance, spectral model and wind-age caveats remain.",
+      "notes": "Adopt age 1.6–5.1 kyr and Ho2026 cool-surface luminosity 1.3–4.0 × 10^32 erg/s as error bars only. Ho range spans model medians, not a common statistical confidence interval; geometric age marker is the midpoint of 1.6–5.1 kyr and is illustrative. Marino2024 results are compatible in order of magnitude but refer to different spectral components and partially shared data. P20 high carbon branch excluded from adopted range. Distance, spectral model and wind-age caveats remain. Distance 1.41 (1.27–1.55) kpc (Suherli2026) adopted 2026-11-20, consistent with the Ho2026 analysis; distance-only rescaling of P20 or M24 values remains invalid.",
       "age_yr_lo": 1600,
       "age_yr_hi": 5100,
-      "plot_label": "Vela Jr."
+      "plot_label": "Vela Jr.",
+      "distance_kpc": 1.41,
+      "distance_kpc_lo": 1.27,
+      "distance_kpc_hi": 1.55
     },
     "48": {
       "name": "PSR B1727−47",

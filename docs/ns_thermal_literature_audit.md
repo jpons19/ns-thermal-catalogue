@@ -146,6 +146,14 @@ Imported earlier alternatives remain visible: P20 whole-surface luminosity (1–
 
 [Marino et al. (2024)](https://doi.org/10.1038/s41550-024-02291-y) and [Ho et al. (2026)](https://doi.org/10.1093/mnras/stag126) report luminosities compatible in order of magnitude, despite different distances and spectral models. This does not equate the detected small-area blackbody luminosity in Marino with Ho's cool-surface component: Marino's additional whole-surface blackbody is a conditional upper limit, not a detection or a lower error-bar endpoint. Marino analyses Chandra ACIS-S; Ho uses that observation plus XMM spectra, so analyses are independent but the observations partially overlap. Ho discusses potentially higher ACIS-S flux due to remnant contamination. Distance association, stellar radius, composition, absorption and component decomposition remain systematic caveats.
 
+### Decision · 20 November 2026 (closes the Vela Jr discussion)
+
+This complements the 19 November decision above, which already adopts the Ho2026 luminosity and the 2.86 kyr marker.
+
+- **Distance adopted:** 1.41 (1.27–1.55) kpc from Suherli et al. (2026). It is consistent with the Ho2026 analysis, which uses d ≈ 1.4 kpc. The P20 whole-surface value at 0.77 kpc and the M24 small-area value stay as provenance; rescaling them by distance alone is not valid.
+- **Why Ho2026.** It is the only analysis that uses all available XMM-Newton and Chandra spectra, and it separates the cool surface from the hot spot explicitly.
+- **Cooling comparison (report only, not used to select the age).** Against the minimal-cooling band of the 2026-11-20 sweeps, the upper end of the luminosity range lies 0.17 dex below the band at 5.1 kyr and 0.43 dex below at 1.6 kyr. It is marginally below, with the tension growing for younger ages, as for J0205.
+
 ## Cas A · accepted reference source · 18 November 2026
 
 **Include Cas A (CXOU J232327.8+584842; source 13) as an explicit exception to the CCO exclusion. Adopt age 307–345 yr at reference epoch 2007 and redshifted bolometric luminosity L∞=(5.6–9.3) × 10³³ erg/s.** Plot a green star with horizontal and vertical error bars only; no shaded uncertainty rectangle. Retain the imported catalogue marker (326.2 yr, 7.22 × 10³³ erg/s) as a display location, not a new fit.
