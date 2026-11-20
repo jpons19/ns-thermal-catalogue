@@ -81,11 +81,11 @@ The HTML synchronizer refreshes the reviewed discussions listed in its source ma
 
 Cite the original observational papers, the audit's stated assumptions and the repository commit used for an analysis. `CITATION.cff` identifies this working dataset. Licensing has not been assigned on the user's behalf; see `LICENSE_NOTES.md`. Original imported material retains its own provenance and applicable terms.
 
-J0205+6449: provisional age **0.8–7 kyr** and adopted luminosity envelope **(0.2–3.4) × 10³² erg/s**. The young branch does not assume an association with SN 1181; Pa 30 is its likely remnant.
+J0205+6449 (decision of 20 November 2026): age **0.8–7 kyr**, luminosity **(0.8–3.4) × 10³² erg/s**, display marker at about 819 yr. The young branch does not assume an association with SN 1181; Pa 30 is its likely remnant.
 
 ## Cooling comparison
 
-Current plots include J0205: age 0.8–7 kyr, L∞=(0.2–3.4)×10³² erg/s. Five reference tracks extended to L∞ < 10³⁰ erg/s at 1.4 solar masses (BSk22, BSk24, BSk25*, BSk26, DDFGOS(APR)*) are included in both panels. See [run notes](models/README.md), [arrays](data/cooling_five_eos.csv) and `python scripts/plot_ns_sources.py --cooling-curves`. The original catalogue comparison is generated with `--original-catalogue --cooling-curves`.
+The saved figures still show J0205 with L∞=(0.2–3.4)×10³² erg/s and predate the 20 November decisions; regenerate them with `python scripts/rebuild.py`. Five reference tracks extended to L∞ < 10³⁰ erg/s at 1.4 solar masses (BSk22, BSk24, BSk25*, BSk26, DDFGOS(APR)*) are included in both panels. See [run notes](models/README.md), [arrays](data/cooling_five_eos.csv) and `python scripts/plot_ns_sources.py --cooling-curves`. The original catalogue comparison is generated with `--original-catalogue --cooling-curves`.
 
 Cas A uses 307–345 yr at reference epoch 2007, from Fesen’s 1681 ± 19 explosion date, and L∞=(5.6–9.3)×10³³ erg/s, with error bars only. Four primary references are recorded in the audit and BibTeX file. The GitHub package contains cooling reference arrays and model descriptions only; the cooling solver and runner stay separate.
 
@@ -93,7 +93,7 @@ Vela Jr (source 3) uses age 1.6–5.1 kyr and the Ho2026 cool-surface luminosity
 
 Vela Jr age adopted: 1.6–5.1 kyr, older wind scenario retained as caveat. Upper-limit audits opened for B1727−47 (assuming the user's B1757 was a typo) and J0007+7303; their previous plotting limits remain provisional.
 
-Adopted upper-limit source ages: B1727−47 40–80 kyr; J0007+7303 9–13 kyr. Luminosity ceilings remain <3.5×10³¹ and <3×10³¹ erg/s, respectively, with their audit caveats.
+Adopted upper-limit source ages: B1727−47 40–80 kyr; J0007+7303 9–13 kyr. Luminosity ceilings remain <3.5×10³¹ and <3×10³¹ erg/s, respectively, with their audit caveats. J0007 also has a conservative ceiling of about 10³² erg/s, drawn as a dotted extension (20 November 2026), with a recommendation to seek a newer reanalysis or refit the data.
 
 IC 443 age adopted: 3–20 kyr. Chevalier1999 and cooling-model ages excluded from the selected age evidence. The marker uses a geometric age midpoint for display; luminosity remains pending review of spectral model and distance assumptions.
 
