@@ -55,6 +55,6 @@ def main():
  assert len(result)==41 and len({r['source_id'] for r in result})==41
  out=ROOT/'data/current_plot_sample.csv'
  with out.open('w',newline='') as f:
-  w=csv.DictWriter(f,fieldnames=result[0]);w.writeheader();w.writerows(result)
+  w=csv.DictWriter(f,fieldnames=result[0],lineterminator='\n');w.writeheader();w.writerows(result)
  print('Exported 41 display records:',out.name)
 if __name__=='__main__':main()
