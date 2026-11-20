@@ -239,6 +239,21 @@ At fixed fitted bolometric flux and spectral shape, using 3.1 kpc as an illustra
 
 **Future work:** reassess distance, remnant age and cooling-luminosity jointly before interpreting the box as a full observational interval.
 
+### Discussion record · 20 November 2026 (closes the B2334 discussion)
+
+**Keep the single box as in the original selection; no data change.** A two-scenario representation was examined and not adopted. Its analysis is recorded here so that the box is not read as a single self-consistent measurement. The box pairs the 7.7 kyr age, derived for the 0.7 kpc remnant distance, with luminosities at the 3.1 kpc pulsar distance.
+
+The table compares each self-consistent combination with the minimal-cooling band of the 2026-11-20 cooling sweeps. That comparison is reported here only; it is not used to select the age or the distance.
+
+| Scenario | Age | Cooling luminosity (erg/s) | Against the minimal-cooling lower edge |
+|---|---|---|---|
+| Near (0.7–0.95 kpc) + whole-surface atmosphere (P20 10 km fit, inferred 1.1 kpc) | ~7.7 kyr (not recomputed at 0.95 kpc) | (1.2–8.2) × 10³¹ | ≥ 0.8 dex below (≥ 0.55 dex if McGowan's temperatures are read as T∞) |
+| Near + small hot spot (M24 hidden-surface limit scaled to 0.95 kpc) | ~7.7 kyr | < 4 × 10³⁰ | ≥ 2 dex below |
+| Far (~3.1 kpc) + whole-surface atmosphere (P20 13 km fit) | ≥ 19.4 kyr (conditional kinematic limit) to τc ≈ 41 kyr | (0.3–2.5) × 10³² | marginal near 20 kyr, inside by 41 kyr |
+| Far + small hot spot (M24 hidden-surface limit) | 20–41 kyr | < 4 × 10³¹ | ≥ 0.6 dex below (Fe envelope); inside at the oldest ages with an accreted envelope |
+
+The spectral interpretation matters more than the distance: three of the four combinations lie below minimal cooling. Both age anchors are weak. The 7.7 kyr was derived at 0.7 kpc. On the far branch, the 19.4 kyr lower limit depends on the explosion site being at the geometric centre of the shell.
+
 ## 3. Vela pulsar · PSR B0833−45
 
 - **Age.** V13’s log age interval corresponds to about 5–16 kyr. P20 itself differs internally: Table 2 gives 17–23 kyr, while §3.3 adopts 17–27 kyr. The project P20 row follows the table, and the web row follows the text. The timing value is 11.3 kyr. P20 discusses why the long-term braking index and the pre-glitch value imply different timing estimates. [V13, Table 1](https://arxiv.org/abs/1306.2156) · [P20, object 21](https://arxiv.org/abs/2006.15004)
