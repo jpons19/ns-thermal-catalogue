@@ -134,10 +134,20 @@
     },
     "46": {
       "name": "PSR J0007+7303",
-      "status": "age_adopted_upper_limit_provisional",
+      "status": "adopted_age_and_documented_upper_limit",
       "age_yr_lo": 9000,
       "age_yr_hi": 13000,
-      "notes": "Age interval adopted 18 November 2026 as a review range, without a common confidence level. Original luminosity ceiling and marker retained; spectral provenance/component caveats remain in the audit."
+      "notes": "Age 9–13 kyr. Nominal ceiling L∞ < 3e31 erg/s, documented as the NSA local-temperature conversion of the Caraveo et al. (2010) 3-sigma limit; conservative ceiling about 1e32 erg/s (BB, 10 km as physical radius), drawn as a dotted extension. Pulsed hot-spot component excluded from the cooling comparison. Open action: look for a newer reanalysis of the archival Chandra/XMM data, or refit independently (modern atmosphere, R about 12 km, pulsar/PWN separation).",
+      "L_inf_erg_s_upper_limit": 3e+31,
+      "L_inf_erg_s_upper_limit_conservative": 1e+32,
+      "ceiling_conventions": {
+        "reference": "Caraveo2010, 3-sigma whole-surface limits for a 10 km star at 1.4 kpc: T < 5.3e5 K (BB), T < 4.8e5 K (NSA)",
+        "NSA_local_T_10km": 2.22e+31,
+        "BB_10km_apparent_radius": 5.62e+31,
+        "NSA_T_read_as_T_inf_10km": 6.45e+31,
+        "BB_10km_physical_radius": 9.59e+31,
+        "note": "Conversions keep R = 10 km and do not refit; R = 12–13 km raises each ceiling by up to about 1.5–1.7 times, partly offset by a lower temperature limit; 1.7 kpc adds about 20%."
+      }
     },
     "17": {
       "name": "CXOU J061705.3+222127 / IC 443",

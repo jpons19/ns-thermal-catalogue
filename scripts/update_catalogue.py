@@ -42,7 +42,9 @@ def main():
    chosen="<p class='chosen'><b>Age adopted · 18 November 2026</b><br>Age: <b>45–85 kyr</b>; distance: <b>1–2 kpc</b>. Adopt whole-surface <b>L∞ &lt; 3.8 × 10³² erg/s</b>, retaining the published 3σ fixed-radius BB ceiling at 2 kpc. Plot: upper-limit arrow with age error bar; hot-spot detection preserved separately in historical records.</p>"
   elif sid==17:
    chosen="<p class='chosen'><b>Adopted review envelope</b><br>Age: <b>3–20 kyr</b>; distance: <b>1.6–1.7 kpc</b>. Chevalier's old estimate excluded; cooling-model ages excluded to avoid circularity. Age marker is the geometric midpoint for display. Luminosity: <b>(1.0–3.5) × 10³² erg/s</b>. Previous luminosity marker retained for comparison; spectral model and distance-scaling caveats remain.</p>"
-  elif sid in (46,48):
+  elif sid==46:
+   chosen=f"<p class='chosen'><b>Adopted · 20 November 2026</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Nominal ceiling <b>L∞ &lt; {d['L_inf_erg_s_upper_limit']:.0e} erg/s</b> (NSA, local temperature, 10 km); conservative ceiling about <b>{d['L_inf_erg_s_upper_limit_conservative']:.0e} erg/s</b> (blackbody, 10 km physical radius), shown dotted. A newer reanalysis or an independent refit is recommended.</p>"
+  elif sid==48:
    chosen=f"<p class='chosen'><b>Age range adopted · 18 November 2026</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Published luminosity ceiling retained; spectral provenance and component caveats remain.</p>"
   elif sid==3:
    chosen="<p class='chosen'><b>Age and cool-surface luminosity adopted</b><br>Age 1.6–5.1 kyr; Ho2026 cool-surface luminosity (1.3–4.0) × 10³² erg/s. Error bars only; Ho range spans model medians, not a common confidence interval. Older wind age and spectral assumptions remain caveats.</p>"

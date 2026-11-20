@@ -184,6 +184,10 @@ for ax,basis in zip(axes,('independent','characteristic')):
         ax.errorbar(x,y,xerr=[[max(0,x-lo)],[max(0,hi-x)]],
             yerr=[[y*.48],[0]] if ul else [[max(0,y-lower)],[max(0,upper-y)]],
             uplims=ul,fmt='none',ecolor=color,alpha=.65,capsize=2,elinewidth=1,zorder=2)
+        cons=REVIEW.get(str(p['id']),{}).get('L_inf_erg_s_upper_limit_conservative')
+        if ul and cons and cons>y:
+            ax.plot([x,x],[y,cons],ls=':',color=color,lw=1.2,alpha=.8,zorder=2)
+            ax.plot([x],[cons],marker='_',ms=9,color=color,alpha=.8,zorder=2)
         face=color if basis=='independent' else 'white'
         if p['id'] in (3,14):
             face='white'

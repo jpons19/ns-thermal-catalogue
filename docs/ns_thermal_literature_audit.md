@@ -105,6 +105,24 @@ The historical catalogue L∞<3 × 10³¹ erg/s is retained provisionally. Befor
 
 **Age check:** [Martín, Torres & Pedaletti 2016](https://doi.org/10.1093/mnras/stw684), **Martin2016**, explore models over 9–13 kyr and give example solutions at 9.2 kyr (free expansion) and 11.4 kyr (compression). Therefore the imported 9.1–9.3 kyr plotting interval must not be interpreted as their measured age uncertainty. Characteristic age 13.9 kyr is another model-dependent estimate. The adopted 9–13 kyr range now represents the age uncertainty in the review plot; the historical luminosity arrow remains.
 
+### Decision · 20 November 2026 (closes the J0007 discussion)
+
+**Keep L∞ < 3 × 10³¹ erg/s as the nominal ceiling and add a conservative ceiling of about 10³² erg/s, drawn as a dotted extension of the upper-limit arrow.** Age 9–13 kyr is unchanged.
+
+Conversions of the Caraveo et al. (2010) 3σ whole-surface limits for a 10 km star at 1.4 kpc. These are our calculations; no refit was done.
+
+| Convention | L∞ ceiling (erg/s) |
+|---|---|
+| NSA, temperature read as local (the XSPEC NSA convention) | 2.2 × 10³¹ |
+| Blackbody, 10 km as apparent radius | 5.6 × 10³¹ |
+| NSA, temperature read as measured at infinity | 6.5 × 10³¹ |
+| Blackbody, 10 km as physical radius (13 km apparent) | 9.6 × 10³¹ |
+
+- The catalogue value matches the NSA local-temperature reading, the strictest. A radius of 12–13 km would raise each ceiling by up to about 1.5–1.7 times, partly offset by a lower temperature limit. The upper distance, 1.7 kpc, adds roughly 20%.
+- The pulsed hot-spot component (about 4 × 10³⁰ erg/s in P20) stays out of the cooling comparison.
+- **Cooling comparison (report only).** Against the minimal-cooling band of the 2026-11-20 sweeps (log L 32.65–32.55 at 9–13 kyr), J0007 lies at least 1.08 dex below with the nominal ceiling and at least 0.55 dex below with the conservative one: enhanced cooling is required under every convention examined. What it implies about pairing depends on the ceiling. With 3 × 10³¹, direct Urca must operate in a region that pairing leaves largely uncovered. With 10³², BSk24 above about 1.6 M☉ with ordinary strong gaps also works.
+- **Open action, data reanalysis.** The ceiling rests on a 2010 analysis with a 10 km star and its own conversion conventions. Look for a newer reanalysis of the archival Chandra and XMM-Newton data, in particular one using modern atmosphere models, R ≈ 12 km and an explicit separation of pulsar and nebula emission. If none exists, an independent refit is recommended. It would settle whether the ceiling is closer to 3 × 10³¹ or 10³² erg/s, and so which pairing configurations remain allowed.
+
 ## Vela Jr · included for discussion · 18 November 2026
 
 **Include CXOU J085201.4−461753 (source 3) as a second CCO exception. Age 1.6–5.1 kyr and Ho2026 cool-surface luminosity (1.3–4.0) × 10³² erg/s adopted; distance and spectral assumptions remain caveats.** The adopted open green star, labelled simply Vela Jr. in the plot to reduce crowding, uses the Ho2026 cool-surface reference: adopted age 1.6–5.1 kyr, L∞=(1.3–4.0) × 10³² erg/s. Its geometric display location is not a best estimate. Age and luminosity ranges are shown as error bars without a shaded box. Imported WEB luminosities mix cool and total emission and are not used as a single physical-component interval here.
