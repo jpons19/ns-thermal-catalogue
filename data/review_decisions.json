@@ -201,11 +201,19 @@
     },
     "16": {
       "name": "PSR J0538+2817 / S147",
-      "status": "age_20_60_kyr_adopted_luminosity_catalogue",
+      "status": "age_and_luminosity_adopted",
       "age_yr_lo": 20000,
       "age_yr_hi": 60000,
       "display_marker_age_yr": 30000,
-      "notes": "Adopt 20–60 kyr as working kinematic interval, not a common confidence interval; ~114 kyr Suzuki value has apparent proper-motion and coordinate inconsistencies requiring verification. Older remnant dynamical ages remain conditional on ambient profile and geometry. Luminosity unchanged from P20/WEB."
+      "fiducial_L_inf_erg_s": 8.24621125123532e+32,
+      "L_inf_erg_s_lo": 5e+32,
+      "L_inf_erg_s_hi": 1.36e+33,
+      "marker_policy": "Display marker at geometric midpoint of luminosity envelope (~8.25e32 erg/s) and 30 kyr kinematic midpoint; both are fiducial locations within the adopted envelope, not best estimates.",
+      "included_references": [
+        "V13",
+        "P20"
+      ],
+      "notes": "Luminosity decision 2026-11-20. Outer envelope: low end V13 BB+PL at 1.3 kpc gives 5.0e32 erg/s; high end P20 NSA family at 1.47 kpc gives 1.36e33 erg/s. Both distances are within Kochanek et al. (2024) 90% interval of 1.30–1.47 kpc. No rescaling applied; each fit retained at its own cited distance (Option A). The web distance update to 1.37 kpc median does not invalidate either endpoint. Primary spectral paper: McGowan et al. (2003), XMM-Newton. No post-P20 reanalysis at the Kochanek distance is available. BB+PL and NSA models give genuinely different luminosity estimates; both are included in the outer envelope as the review principle requires."
     }
   }
 }

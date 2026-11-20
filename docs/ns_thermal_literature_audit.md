@@ -338,6 +338,19 @@ The current plot shows the accepted age and luminosity bounds as ordinary pulsar
 
 An alternative older (~66–200 kyr) remnant dynamical interpretation in a homogeneous medium was discussed by [Michailidis et al. (2024)](https://doi.org/10.1051/0004-6361/202449424). [Khabibullin et al. (2024)](https://doi.org/10.1051/0004-6361/202449419) describe a supernova expanding in a low-density cavity followed by interaction with a dense shell, which permits a younger system. The selected age does not exclude all older dynamical models; neither age nor luminosity is selected using the cooling curves.
 
+### Luminosity decision · 20 November 2026
+
+**Adopted outer envelope: (5.0–13.6) × 10³² erg/s**, display marker at ~8.2 × 10³² erg/s (geometric midpoint of the envelope range). Age display marker unchanged at 30 kyr.
+
+The envelope is formed by taking each fit at its own cited distance, following the review principle (outer envelope across reviewed alternatives, no rescaling):
+
+- **Low end: V13 BB+PL at 1.3 kpc → 5.0 × 10³² erg/s.** The 1.3 kpc distance coincides with the low end of Kochanek et al. (2024)'s 90% remnant interval (1.30–1.47 kpc). The V13 blackbody-plus-power-law decomposition gives a narrower luminosity range (5.0–7.9) × 10³² at this distance, which sets the lower bound of the adopted envelope.
+- **High end: P20 NSA family at 1.47 kpc → 1.36 × 10³³ erg/s.** P20 uses the Ng et al. (2007) VLBI parallax of 1.47 (+0.42/−0.27) kpc, which coincides with Kochanek's high end. The NSA family spans multiple atmosphere compositions, giving the range (6.3–13.6) × 10³².
+
+The primary spectral paper is [McGowan et al. (2003)](https://doi.org/10.1086/375332), XMM-Newton, pre-dating the Ng et al. parallax. No reanalysis at the Kochanek median distance (1.37 kpc) is available; a simple d²-rescaling of P20 to 1.37 kpc would shift the high end to ~11.8 × 10³², but rescaling is approximate for atmosphere fits and is not applied here. The BB+PL and NSA models give genuinely different luminosity ranges at their respective distances; the outer envelope covers both model families.
+
+The web table (09.10.2025) inconsistency — Kochanek distance adopted but P20 luminosity retained unchanged — is noted; the adopted envelope accounts for the full distance range explicitly and supersedes that web entry for this review. [Kochanek et al. (2024)](https://doi.org/10.3847/1538-4357/ad4493) · [Ng et al. (2007)](https://doi.org/10.1086/510576) · [McGowan et al. (2003)](https://doi.org/10.1086/375332) · [V13](https://doi.org/10.1093/mnras/stt1008) · [P20, object 16](https://arxiv.org/abs/2006.15004)
+
 ## 6. Three X-ray isolated neutron stars with important age or fit differences
 
 | Source | Age evidence | Thermal evidence and open question |

@@ -4,6 +4,7 @@
 
 The generated plot sample and HTML pages are regenerated in this revision; the figures are not. They take effect at the next `python scripts/rebuild.py`.
 
+- PSR J0538+2817 / S147: luminosity outer envelope adopted as (5.0–13.6)×10³² erg/s; display marker at ~8.2×10³² erg/s (geometric midpoint) and 30 kyr kinematic midpoint. Low end: V13 BB+PL at 1.3 kpc. High end: P20 NSA family at 1.47 kpc. Both distances within Kochanek et al. (2024) 90% interval; no d²-rescaling applied (Option A). Exporter updated to set luminosity fields for source 16; McGowan2003 and Kochanek2024 added to references.bib.
 - J0205+6449: luminosity lower edge raised from 2×10³¹ (small-area fit) to 0.8×10³² erg/s. Age 0.8–7 kyr and the ~819 yr display marker kept. Conditional hidden-surface limit not plotted. Kothes (2013) check deferred.
 - J0007+7303: 3×10³¹ erg/s ceiling documented as the NSA local-temperature conversion of Caraveo et al. (2010). Conservative ceiling of about 10³² erg/s added as a dotted extension; the plotting code draws it for any upper limit with `L_inf_erg_s_upper_limit_conservative`. Reanalysis recommended.
 - B2334+61: single original box kept. Two-scenario analysis recorded in the audit only.
