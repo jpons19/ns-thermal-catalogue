@@ -49,7 +49,7 @@ def main():
   elif sid==13:
    chosen="<p class='chosen'><b>Accepted reference · 18 November 2026</b><br>Age: <b>307–345 yr (reference epoch 2007)</b>; L∞: <b>(5.6–9.3) × 10³³ erg/s</b>. Point with error bars only; no shaded box.</p>"
   elif sid==14:
-   chosen=f"<p class='chosen'><b>Selected review envelope · {r['review_date']}</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Luminosity: <b>(0.2–3.4) × 10³² erg/s</b>. SN 1181 association disputed; spectral interpretation remains model dependent. Correct characteristic age approximately 5.4 kyr.</p>"
+   chosen=f"<p class='chosen'><b>Selected review envelope · {r['review_date']}</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>. Luminosity: <b>({d['L_inf_erg_s_lo']/1e32:g}–{d['L_inf_erg_s_hi']/1e32:g}) × 10³² erg/s</b>; small-area lower edge removed. Marker at about 819 yr retained as a display location; SN 1181 not assumed. Correct characteristic age approximately 5.4 kyr.</p>"
   elif sid==20:
    chosen=f"<p class='chosen'><b>Adopted review envelope · {r['review_date']}</b><br>Age: <b>{d['age_yr_lo']/1e3:g}–{d['age_yr_hi']/1e3:g} kyr</b>; luminosity: <b>({d['L_inf_erg_s_lo']/1e32:g}–{d['L_inf_erg_s_hi']/1e32:g}) × 10³² erg/s</b>. Upper bound deliberately retains the unresolved P20 compilation value. No common confidence level.</p>"
   elif sid==21:

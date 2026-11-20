@@ -170,6 +170,17 @@ Four primary references are recorded in the bibliography:
 - **Separate conditional limit:** Marino's additional cool whole-surface blackbody limit Lcool < 10²⁸ erg/s applies within the hot-spot decomposition. It is retained as a separate conditional constraint, not folded into the lower edge of the detected thermal envelope.
 - **References:** [Potekhin et al. 2020, object 14](https://arxiv.org/abs/2006.15004) and [Marino et al. 2024, Methods and supplementary atmosphere fits](https://arxiv.org/abs/2404.05371). Individual confidence conventions are preserved in the source discussion; the adopted envelope has no combined confidence level.
 
+### Decision · 20 November 2026 (closes the J0205 discussion)
+
+**Age 0.8–7 kyr retained; luminosity L∞ = (0.8–3.4) × 10³² erg/s; marker at about 819 yr.** This supersedes the 18 November luminosity selection.
+
+- **Lower luminosity edge removed.** The 2 × 10³¹ erg/s endpoint came from Marino's small-area atmosphere fits projected to 1.7 kpc. It describes a small emitting region and is not a constraint on the cooling luminosity. The adopted interval is one range with no split by spectral interpretation. Its lower end, 0.8 × 10³², is the lower 1σ value of the P20 whole-surface fit, (1.9 − 1.1) × 10³².
+- **Hidden-surface limit not plotted.** Marino's conditional Lcool < 10²⁸ erg/s corresponds to kT∞ ≈ 4 eV for an 11 km surface. Chandra spectra at 2 kpc with N_H of a few 10²¹ cm⁻² cannot constrain such a component, so the limit probably reflects a fit at its lower boundary. It stays in the record as provenance only.
+- **Marker.** The display marker stays at the WEB location, 819.5 yr (about 819 yr) and 1.9 × 10³² erg/s. It is a display location, not a best estimate, and it does not adopt the SN 1181 association.
+- **Age.** The 0.8–7 kyr envelope is kept, consistent with the policy of keeping alternatives without ranking them. For steady PWN growth R ∝ t^1.2 inside freely expanding ejecta, the radio expansion timescale of about 7 kyr corresponds to t ≈ 8.4 kyr. Only a decelerating phase gives less than 7 kyr. The 7 kyr endpoint is therefore not a natural upper bound.
+- **Deferred check.** Verify whether the Kothes (2013) 0.63–1.6 kyr range is derived independently of the 1181 date, or whether its inputs were chosen to reproduce about 830 yr.
+- **Cooling comparison (report only, not used to select the age).** Against the minimal-cooling band of the 2026-11-20 cooling sweeps, the upper end of the interval lies 0.55–0.60 dex below the band at about 1 kyr and 0.18–0.24 dex below at 5–7 kyr (0.06 dex at 2.3 kpc and 7 kyr).
+
 ## 2. PSR B2334+61 · G114.3+0.3
 
 - **Age and distance are coupled.** Yar-Uyaniker et al. estimate **0.7 kpc from H I** and derive about **7.7 kyr** using a pressure-driven snowplow model for the remnant at that distance. The age calculation assumes an ambient density and remnant radius. M24 uses this 7.7 kyr with an adopted 10% analysis uncertainty and independently uses the older **3.1 (+0.2/−1.0) kpc** NE2001 dispersion-measure estimate for the pulsar. P20 quotes 2.08 kpc from YMW17. A self-consistent remnant-age estimate at the larger distance remains open. The 40–41 kyr characteristic age is a separate estimator. [Yar-Uyaniker et al. 2004, §4.1](https://arxiv.org/abs/astro-ph/0408386) · [M24, Methods](https://arxiv.org/abs/2404.05371) · [P20, object 33](https://arxiv.org/abs/2006.15004)

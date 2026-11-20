@@ -50,14 +50,14 @@
     },
     "14": {
       "name": "PSR J0205+6449 / 3C 58",
-      "status": "adopted_luminosity_envelope_age_provisional",
+      "status": "adopted_age_and_luminosity_envelope",
       "age_yr_lo": 800,
       "age_yr_hi": 7000,
       "tau_c_yr_corrected": 5380,
-      "notes": "Retain 0.8–7 kyr as a provisional methodological envelope: young decelerating models (Kothes 2013) and several-kyr optical/radio scenarios; 0.8 is a rounded continuity choice, not the minimum of Kothes, and 7 kyr is a PWN expansion timescale, not a rigorous upper bound. SN 1181 is not assumed; Pa 30 is its likely remnant. Characteristic age depends on braking; pulsar proper motion does not determine an age. No common confidence level or equal endpoint weights. Luminosity envelope unchanged; conditional hidden-surface limit separate.",
-      "L_inf_erg_s_lo": 2e+31,
+      "notes": "Age 0.8–7 kyr retained (decision 2026-11-20): young decelerating models (Kothes 2013) and several-kyr optical/radio scenarios; 0.8 is a rounded continuity choice, not the minimum of Kothes, and 7 kyr is a PWN expansion timescale, not a rigorous upper bound (for steady PWN growth R ∝ t^1.2 inside freely expanding ejecta, t ≈ 1.2 × 7 ≈ 8.4 kyr). SN 1181 is not assumed; Pa 30 is its likely remnant. Luminosity (0.8–3.4) × 10³² erg/s: the small-area lower edge 2 × 10³¹ is removed; single interval, no split by spectral interpretation. The conditional hidden-surface limit < 10²⁸ erg/s (kT ≈ 4 eV) is not plotted. Open: check whether the Kothes 0.63–1.6 kyr range is derived independently of the 1181 date. No common confidence level or equal endpoint weights.",
+      "L_inf_erg_s_lo": 8e+31,
       "L_inf_erg_s_hi": 3.4e+32,
-      "marker_policy": "Retain previous catalogue marker; no new best estimate selected."
+      "marker_policy": "Marker retained at the WEB location, 819.5 yr (about 819 yr) and 1.9e32 erg/s; a display location, not a best estimate or an adoption of the SN 1181 association."
     },
     "13": {
       "name": "Cas A / CXOU J232327.8+584842",

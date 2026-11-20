@@ -20,7 +20,7 @@ def main():
  assert v['L_inf_erg_s_lo']==2e32 and v['L_inf_erg_s_hi']==4.4e32
  m=r['20'];assert m['age_yr_lo']==70000 and m['age_yr_hi']==120000
  assert m['L_inf_erg_s_lo']==2.5e32 and m['L_inf_erg_s_hi']==9e32
- j=r['14'];assert (j['age_yr_lo'],j['age_yr_hi'],j['L_inf_erg_s_lo'],j['L_inf_erg_s_hi'])==(800,7000,2e31,3.4e32)
+ j=r['14'];assert (j['age_yr_lo'],j['age_yr_hi'],j['L_inf_erg_s_lo'],j['L_inf_erg_s_hi'])==(800,7000,8e31,3.4e32)
  assert (ROOT/'figures/ns_velajr_with_cooling.png').exists()
  curves=np.genfromtxt(ROOT/'data/cooling_five_eos.csv',delimiter=',',names=True,dtype=None,encoding='utf-8')
  models=np.array([name.removesuffix('_Lmin1e30') for name in curves['model']])
