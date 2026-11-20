@@ -13,7 +13,7 @@
       "excluded_references": [
         "V13"
       ],
-      "marker_policy": "Retain WEB catalogue point for comparison; no new best estimate selected.",
+      "marker_policy": "Marker retained from WEB at 21.4 kyr (geometric midpoint of P20 17–27 kyr) and 4.24e32 erg/s (P20 R = 13 km fit); a reference location, not a best estimate.",
       "notes": "Rounded selected bounds, not exhaustive confidence limits. The 40 kyr ceiling is conditional on extrapolating the low braking index and torque law over the lifetime. The retained luminosity marker lies close to the upper edge; see audit section 3."
     },
     "33": {
